@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "558774203658",
+    "firebase_url": "https://ohnaturalfirebase-default-rtdb.firebaseio.com",
+    "project_id": "ohnaturalfirebase",
+    "storage_bucket": "ohnaturalfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558774203658:android:a192be12b761e2595af6f3",
+        "android_client_info": {
+          "package_name": "com.example.oh_nat_foods_order"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXySx-D5FPczdGzQELxCb4Ar5ysDSMxUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558774203658:android:8e6b9e47a3eb18935af6f3",
+        "android_client_info": {
+          "package_name": "com.example.oh_nat_preorder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXySx-D5FPczdGzQELxCb4Ar5ysDSMxUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
