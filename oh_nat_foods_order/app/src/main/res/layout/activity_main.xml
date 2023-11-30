@@ -6,13 +6,114 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/main_mainImage"
+        android:layout_width="550dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ohnatfoodshome" />
+
     <TextView
+        android:id="@+id/main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="36dp"
+        android:drawableLeft="@drawable/ohnaturalfoodsicon"
+        android:fontFamily="serif"
+        android:text="Oh Natural Foods Preordering"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="23dp"
+        android:textStyle="bold|normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/main_orderButton"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="52dp"
+        android:backgroundTint="#ffff00"
+        android:hapticFeedbackEnabled="false"
+        android:text="ORDER NOW"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_mainImage" />
+
+    <Button
+        android:id="@+id/main_loginButton"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#ffff00"
+        android:text="LOGIN"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_orderButton" />
+
+    <Button
+        android:id="@+id/main_registerButton"
+        android:layout_width="140dp"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_height="50dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#ffff00"
+        android:text="REGISTER"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_orderButton" />
+
+    <TextView
+        android:id="@+id/main_bottomBar"
+        android:layout_width="415dp"
+        android:layout_height="70dp"
+        android:background="#ffff00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/main_homeButton"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="HOME"
+        android:textSize="25dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/main_accountButton"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="128dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="ACCOUNT"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/main_logButton"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="264dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="LOGIN"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
