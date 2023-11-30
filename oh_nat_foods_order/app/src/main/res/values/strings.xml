@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">oh_nat_foods_order</string>
+
+    <string name="detailProduct">Product</string>
+    <string name="detailDesc">This is a description of a product that does not exist.</string>
+    <string name="detailCustom">Choose an Option:</string>
+    <string-array name="detailCustomArray">
+        <string>Option 1</string>
+        <string>Option 2</string>
+        <string>Option 3</string>
+    </string-array>
+    <string name="detailComment">Extra Comments</string>
+    <string name="detailAddCart">Add to Cart</string>
+
+
 </resources>
