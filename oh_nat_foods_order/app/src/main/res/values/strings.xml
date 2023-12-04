@@ -4,6 +4,15 @@
     <string name="detailProduct">Product</string>
     <string name="detailDesc">This is a description of a product that does not exist.</string>
     <string name="detailCustom">Choose an Option:</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="register_prompt">Don\'t have an account? Register here.</string>
+    <string name="name_hint">Name</string>
+    <string name="register">Register</string>
+    <string name="already_have_account">Already have an account? Log in.</string>
+
     <string-array name="detailCustomArray">
         <string>Option 1</string>
         <string>Option 2</string>
@@ -11,6 +20,9 @@
     </string-array>
     <string name="detailComment">Extra Comments</string>
     <string name="detailAddCart">Add to Cart</string>
+
+
+
 
 
 </resources>
