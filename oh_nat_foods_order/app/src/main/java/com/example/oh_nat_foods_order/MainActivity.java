@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onRegister() {
         Intent toRegister = new Intent(this, register.class);
+        startActivity(toRegister);
     }
 
     public void onHome() {

@@ -22,11 +22,11 @@
         android:id="@+id/main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="36dp"
         android:drawableLeft="@drawable/ohnaturalfoodsicon"
-        android:fontFamily="serif"
         android:text="Oh Natural Foods Preordering"
+        android:textColor="#046305"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="23dp"
         android:textStyle="bold|normal"
@@ -35,12 +35,10 @@
 
     <Button
         android:id="@+id/main_orderButton"
-        style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:layout_marginStart="52dp"
-        android:backgroundTint="#ffff00"
-        android:hapticFeedbackEnabled="false"
+        android:backgroundTint="#4CAF50"
         android:text="ORDER NOW"
         android:textSize="20dp"
         android:onClick="onLogin"
@@ -49,12 +47,11 @@
 
     <Button
         android:id="@+id/main_registerButton"
-        style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="140dp"
         android:layout_height="50dp"
         android:layout_marginStart="132dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#ffff00"
+        android:backgroundTint="#4CAF50"
         android:text="REGISTER"
         android:onClick="onRegister"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +61,7 @@
         android:id="@+id/main_bottomBar"
         android:layout_width="415dp"
         android:layout_height="70dp"
-        android:background="#ffff00"
+        android:background="#EFEF5B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

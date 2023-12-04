@@ -11,18 +11,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class register extends AppCompatActivity {
-
-    private ImageView logoImageView;
-    private TextView titleTextView;
-    private EditText nameEditText;
-    private EditText registerEmailEditText;
-    private EditText registerPasswordEditText;
-    private Button registerButton;
-    private TextView alreadyHaveAccountText;
+    private EditText name;
+    private EditText email;
+    private EditText password;
+    private EditText passwordVerify;
+    private Button submit;
+    private TextView login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,27 +29,32 @@ public class register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         // Initialize UI elements
-        logoImageView = findViewById(R.id.logoImageView);
-        titleTextView = findViewById(R.id.titleTextView);
-        nameEditText = findViewById(R.id.nameEditText);
-        registerEmailEditText = findViewById(R.id.registerEmailEditText);
-        registerPasswordEditText = findViewById(R.id.registerPasswordEditText);
-        registerButton = findViewById(R.id.registerButton);
-        alreadyHaveAccountText = findViewById(R.id.alreadyHaveAccountText);
+        name = findViewById(R.id.register_name);
+        email = findViewById(R.id.register_email);
+        password = findViewById(R.id.register_password);
+        passwordVerify = findViewById(R.id.register_passwordVerify);
+        submit = findViewById(R.id.register_submit);
+        login = findViewById(R.id.register_login);
 
         //Register button
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Code to perform on register button click
-                String name = nameEditText.getText().toString();
-                String email = registerEmailEditText.getText().toString();
-                String password = registerPasswordEditText.getText().toString();
-                registerUser(name, email, password);
+                String nameSubmitted = name.getText().toString();
+                String emailSubmitted = email.getText().toString();
+                String passwordSubmitted = password.getText().toString();
+                String passwordVerifySubmitted = passwordVerify.getText().toString();
+
+                if(passwordSubmitted.trim().equals(passwordVerifySubmitted.trim())){
+                    registerUser(nameSubmitted, emailSubmitted, passwordSubmitted, passwordVerifySubmitted);
+                } else {
+                    Toast.makeText(register.this, "Please ensure your password matches when retyping it.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         //Already have an account button
-        alreadyHaveAccountText.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(register.this, Login.class);
@@ -61,7 +65,7 @@ public class register extends AppCompatActivity {
 
     }
 
-    private void registerUser(String name, String email, String password) {
+    private void registerUser(String name, String email, String password, String passwordVerify) {
         // Implement backend here
     }
 }

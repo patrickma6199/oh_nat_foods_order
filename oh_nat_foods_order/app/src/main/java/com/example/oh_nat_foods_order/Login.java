@@ -15,10 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Login extends AppCompatActivity {
 
-    private EditText emailEditText;
-    private EditText passwordEditText;
-    private Button loginButton;
-    private TextView registerPromptText;
+    private EditText email;
+    private EditText password;
+    private Button submit;
+    private TextView register;
+
+    private TextView forgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,23 +28,24 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // Initialize UI elements
-        emailEditText = findViewById(R.id.emailEditText);
-        passwordEditText = findViewById(R.id.passwordEditText);
-        loginButton = findViewById(R.id.loginButton);
-        registerPromptText = findViewById(R.id.registerPromptText);
+        email = findViewById(R.id.login_email);
+        password = findViewById(R.id.login_password);
+        submit = findViewById(R.id.login_submit);
+        register = findViewById(R.id.login_register);
+        forgotPassword = findViewById(R.id.login_forgotPassword);
 
         //Login button
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = emailEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
-                loginUser(email, password);
+                String emailSubmitted = email.getText().toString();
+                String passwordSubmitted = password.getText().toString();
+                loginUser(emailSubmitted,passwordSubmitted);
             }
         });
 
         //Register button
-        registerPromptText.setOnClickListener(new View.OnClickListener() {
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Login.this, register.class);
@@ -53,6 +56,6 @@ public class Login extends AppCompatActivity {
     }
 
     private void loginUser(String email, String password) {
-        //Implement login backend
+        // Implement backend here
     }
 }
