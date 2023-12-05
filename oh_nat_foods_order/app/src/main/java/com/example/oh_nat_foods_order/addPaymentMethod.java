@@ -128,6 +128,6 @@ public class addPaymentMethod extends AppCompatActivity {
     }
 
     private String formatPostalCode(String postalCode) {
-        return postalCode.substring(0, 3) + " " + postalCode.substring(3);
+        return (postalCode.substring(0, 3) + " " + postalCode.substring(3)).toUpperCase();
     }
 }
