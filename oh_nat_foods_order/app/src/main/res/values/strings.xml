@@ -37,6 +37,18 @@
     <string name="cartSubtotal">Subtotal: $0.00</string>
     <string name="cartTotal">Total: $0.00</string>
     <string name="cartCheckout">CHECKOUT</string>
+    <string-array name="detailQtyArray">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
 
     <string name="myOrdersOrders">My Orders</string>
     <string name="myOrderNum">Order#1111</string>
