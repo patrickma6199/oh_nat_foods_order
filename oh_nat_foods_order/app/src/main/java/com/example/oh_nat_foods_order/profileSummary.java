@@ -37,11 +37,11 @@ public class profileSummary extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accountsummary);
+        setContentView(R.layout.activity_profilesummary);
 
         //getting uid from previous page
-        Bundle fromLoggedIn = getIntent().getExtras();
-        uid = fromLoggedIn.getString("uid");
+        //Bundle fromLoggedIn = getIntent().getExtras();
+        //uid = fromLoggedIn.getString("uid");
 
         //initializing database reference
         usernames = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -50,7 +50,7 @@ public class profileSummary extends AppCompatActivity {
      //   name = (TextView) findViewById(R.id.summary_name);
 
         //fetching user's information from database
-        fetchUserInfo(uid);
+        //fetchUserInfo(uid);
     }
 
     private void fetchUserInfo(String uid) {
