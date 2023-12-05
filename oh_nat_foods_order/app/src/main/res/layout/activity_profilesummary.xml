@@ -54,7 +54,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileSum_usernameText" />
 
-    <EditText
+    <TextView
         android:id="@+id/profileSum_username"
         android:background="@drawable/edittext_background"
         android:layout_width="wrap_content"
@@ -75,6 +75,7 @@
         android:layout_marginTop="16dp"
         android:textSize="18dp"
         android:text="ERROR"
+        android:inputType="text|textNoSuggestions"
         app:layout_constraintStart_toEndOf="@id/profileSum_nameText"
         app:layout_constraintTop_toBottomOf="@+id/profileSum_username" />
 

@@ -29,7 +29,7 @@ import java.util.List;
 
 public class orders extends AppCompatActivity {
 
-    private ItemAdapter itemAdapter;
+    //private ItemAdapter itemAdapter;
     private LinearLayout itemContainer;
     SharedPreferences shared;
     String uid;
@@ -39,7 +39,7 @@ public class orders extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orders);
 
-        itemAdapter = new ItemAdapter();
+        //itemAdapter = new ItemAdapter();
         itemContainer = findViewById(R.id.ordersProductHolder);
 
         //retrieve items from database
@@ -54,11 +54,10 @@ public class orders extends AppCompatActivity {
                     itemList.add(item);
 
                     //update adapter with the new data
-                    itemAdapter.setItemList(itemList);
-
+                    //itemAdapter.setItemList(itemList);
                     //add new item layout to LinearLayout
-                    LinearLayout newItemLayout = itemAdapter.createItemLayout(orders.this, item);
-                    itemContainer.addView(newItemLayout);
+                    //LinearLayout newItemLayout = itemAdapter.createItemLayout(orders.this, item);
+                    //itemContainer.addView(newItemLayout);
                 }
             }
 
@@ -84,80 +83,80 @@ public class orders extends AppCompatActivity {
         }
     }
 
-    public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
-        private List<Item> itemList;
-
-        public ItemAdapter(List<Item> itemList) {
-            this.itemList = itemList;
-        }
-
-        public void setItemList(List<Item> itemList) {
-            this.itemList = itemList;
-        }
-
-        public int getItemViewType(int position) {
-            return position % 2 == 0 ? 0 : 1;
-        }
-
-        public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
-            super.onAttachedToRecyclerView(recyclerView);
-            // Perform setup tasks when the adapter is attached to a RecyclerView
-        }
-
-        public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
-            super.onDetachedFromRecyclerView(recyclerView);
-            // Perform cleanup tasks when the adapter is detached from a RecyclerView
-        }
-
-        static class ViewHolder extends RecyclerView.ViewHolder {
-            // ... ViewHolder implementation
-        }
-        // Other methods
-
-        public LinearLayout createItemLayout(Context context, Item item) {
-            // Create a new LinearLayout for each item
-            LinearLayout itemLayout = new LinearLayout(context);
-            itemLayout.setOrientation(LinearLayout.HORIZONTAL);
-
-            // Create ImageView for item image
-            ImageView itemImageView = new ImageView(context);
-            itemImageView.setLayoutParams(new LinearLayout.LayoutParams(
-                    100,
-                    110
-            ));
-            // Set the image resource based on your item, for example:
-            // itemImageView.setImageResource(R.drawable.your_image_resource);
-            itemLayout.addView(itemImageView);
-
-            // Create TextView for item name
-            TextView itemNameTextView = new TextView(context);
-            itemNameTextView.setLayoutParams(new LinearLayout.LayoutParams(
-                    200,
-                    110
-            ));
-            itemNameTextView.setText(item.getItemName());
-            itemNameTextView.setTextColor(Color.parseColor("#046305"));
-            itemNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-            itemNameTextView.setTypeface(null, Typeface.BOLD);
-            itemLayout.addView(itemNameTextView);
-
-            // Create TextView for item price
-            TextView itemPriceTextView = new TextView(context);
-            itemPriceTextView.setLayoutParams(new LinearLayout.LayoutParams(
-                    100,
-                    110
-            ));
-            itemPriceTextView.setText(String.valueOf(item.getItemPrice()));
-            itemPriceTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-            itemPriceTextView.setTypeface(null, Typeface.BOLD);
-            itemLayout.addView(itemPriceTextView);
-
-            return itemLayout;
-        }
-
-
-        // implement in activity
-    }
+//    public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
+//        private List<Item> itemList;
+//
+//        public ItemAdapter(List<Item> itemList) {
+//            this.itemList = itemList;
+//        }
+//
+//        public void setItemList(List<Item> itemList) {
+//            this.itemList = itemList;
+//        }
+//
+//        public int getItemViewType(int position) {
+//            return position % 2 == 0 ? 0 : 1;
+//        }
+//
+//        public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+//            super.onAttachedToRecyclerView(recyclerView);
+//            // Perform setup tasks when the adapter is attached to a RecyclerView
+//        }
+//
+//        public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
+//            super.onDetachedFromRecyclerView(recyclerView);
+//            // Perform cleanup tasks when the adapter is detached from a RecyclerView
+//        }
+//
+////        static class ViewHolder extends RecyclerView.ViewHolder {
+////            // ... ViewHolder implementation
+////        }
+//        // Other methods
+//
+//        public LinearLayout createItemLayout(Context context, Item item) {
+//            // Create a new LinearLayout for each item
+//            LinearLayout itemLayout = new LinearLayout(context);
+//            itemLayout.setOrientation(LinearLayout.HORIZONTAL);
+//
+//            // Create ImageView for item image
+//            ImageView itemImageView = new ImageView(context);
+//            itemImageView.setLayoutParams(new LinearLayout.LayoutParams(
+//                    100,
+//                    110
+//            ));
+//            // Set the image resource based on your item, for example:
+//            // itemImageView.setImageResource(R.drawable.your_image_resource);
+//            itemLayout.addView(itemImageView);
+//
+//            // Create TextView for item name
+//            TextView itemNameTextView = new TextView(context);
+//            itemNameTextView.setLayoutParams(new LinearLayout.LayoutParams(
+//                    200,
+//                    110
+//            ));
+//            itemNameTextView.setText(item.getItemName());
+//            itemNameTextView.setTextColor(Color.parseColor("#046305"));
+//            itemNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+//            itemNameTextView.setTypeface(null, Typeface.BOLD);
+//            itemLayout.addView(itemNameTextView);
+//
+//            // Create TextView for item price
+//            TextView itemPriceTextView = new TextView(context);
+//            itemPriceTextView.setLayoutParams(new LinearLayout.LayoutParams(
+//                    100,
+//                    110
+//            ));
+//            itemPriceTextView.setText(String.valueOf(item.getItemPrice()));
+//            itemPriceTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+//            itemPriceTextView.setTypeface(null, Typeface.BOLD);
+//            itemLayout.addView(itemPriceTextView);
+//
+//            return itemLayout;
+//        }
+//
+//
+//        // implement in activity
+//    }
 
     public void onLogin(View view) {
         //should be logout button, we can implement dynamically
