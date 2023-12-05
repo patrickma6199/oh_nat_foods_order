@@ -34,7 +34,7 @@ public class Login extends AppCompatActivity {
     protected final OnCompleteListener<DataSnapshot> onLogin = new OnCompleteListener<DataSnapshot>() {
         @Override
         public void onComplete(@NonNull Task<DataSnapshot> task) {
-            if(task.getResult().exists() && task.getResult().child("password").equals(password.getText().toString())) {
+            if(task.getResult().exists() && task.getResult().child("password").getValue().toString().equals(password.getText().toString())) {
                 Intent toOrder = new Intent(Login.this,orders.class);
                 startActivity(toOrder);
                 finish();
@@ -42,7 +42,7 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(Login.this, "username/password is not valid, please try again.", Toast.LENGTH_SHORT).show();
             }
         }
-    }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +80,6 @@ public class Login extends AppCompatActivity {
     }
 
     private void loginUser(String username) {
-        
+        usernames.child(username).get().addOnCompleteListener(onLogin);
     }
 }
