@@ -8,8 +8,25 @@
     android:backgroundTint="#FFFFFF"
     tools:context=".orderdetail">
 
+    <Button
+        android:id="@+id/detailBackButton"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="185dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="546dp"
+        android:layout_marginEnd="210dp"
+        android:layout_marginBottom="125dp"
+        android:backgroundTint="#828882"
+        android:text="@string/detailBack"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/main_bottomBar2"
+        android:id="@+id/detailBottomBar"
         android:layout_width="415dp"
         android:layout_height="70dp"
         android:background="#ffff00"
@@ -17,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/main_homeButton2"
+        android:id="@+id/detailHomeButton"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:paddingTop="20dp"
@@ -29,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/main_accountButton2"
+        android:id="@+id/detailAccountButton"
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:layout_marginStart="128dp"
@@ -42,7 +59,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/main_logButton2"
+        android:id="@+id/detailLogButton"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:paddingTop="20dp"
@@ -54,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/main_title2"
+        android:id="@+id/detailTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -86,6 +103,113 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/detailProdText"
+        android:layout_width="340dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="580dp"
+        android:fontFamily="serif"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="@string/detailProduct"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#046305"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/detailOptions"
+        android:layout_width="160dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="325dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginBottom="375dp"
+        android:background="#FFFFBE"
+        android:text="@string/detailCustom"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/detailQuantity"
+        android:layout_width="160dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="276dp"
+        android:layout_marginEnd="203dp"
+        android:layout_marginBottom="406dp"
+        android:background="#FFFFBE"
+        android:text="@string/detailQty"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/detailOptionSpinner"
+        android:layout_width="160dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="171dp"
+        android:layout_marginTop="-145dp"
+        android:background="@drawable/border"
+        android:entries="@array/detailCustomArray"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/detailQtySpinner"
+        android:layout_width="160dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="258dp"
+        android:layout_marginBottom="264dp"
+        android:background="@drawable/border"
+        android:entries="@array/detailQtyArray"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.378" />
+
+    <Button
+        android:id="@+id/detailAddCartButton"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="185dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="203dp"
+        android:layout_marginTop="546dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="125dp"
+        android:backgroundTint="#4CAF50"
+        android:text="@string/detailAddCart"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -108,76 +232,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/detailOptions"
-        android:layout_width="160dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="325dp"
-        android:layout_marginEnd="200dp"
-        android:layout_marginBottom="375dp"
-        android:background="#FFFFBE"
-        android:text="@string/detailCustom"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/detailOptionSpinner"
-        android:layout_width="160dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="215dp"
-        android:layout_marginTop="305dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="375dp"
-        android:background="@drawable/border"
-        android:entries="@array/detailCustomArray"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:spinnerMode="dialog"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/detailProdText"
-        android:layout_width="340dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="95dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="580dp"
-        android:fontFamily="serif"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:text="@string/detailProduct"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="#046305"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/addCartButton"
-        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
-        android:layout_width="185dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="540dp"
-        android:layout_marginEnd="115dp"
-        android:layout_marginBottom="130dp"
-        android:backgroundTint="#046305"
-        android:text="@string/detailAddCart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

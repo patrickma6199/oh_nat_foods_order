@@ -6,11 +6,275 @@
     android:layout_height="match_parent"
     tools:context=".orders">
 
+    <Button
+        android:id="@+id/detailAddCartButton2"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="185dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="515dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="85dp"
+        android:backgroundTint="#4CAF50"
+        android:text="@string/ordersCart"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="342dp"
-        android:layout_height="92dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="157dp" />
+        android:id="@+id/ordersTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="36dp"
+        android:drawableLeft="@drawable/ohnaturalfoodsicon"
+        android:fontFamily="serif"
+        android:text="Oh Natural Foods Preordering"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="23dp"
+        android:textStyle="bold|normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ordersBottomBar"
+        android:layout_width="415dp"
+        android:layout_height="70dp"
+        android:background="#EFEF5B"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/ordersLogButton"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:onClick="onLogin"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/barLogin"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/ordersHomeButton"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:onClick="onHome"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/barHome"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/ordersAccountButton"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="128dp"
+        android:onClick="onLogin"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/barAccount"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
+        android:id="@+id/ordersProductView"
+        android:layout_width="401dp"
+        android:layout_height="480dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="-60dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/border2"
+        android:scrollbarStyle="insideInset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/ordersProductHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ordersProductImageHolder"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/ordersProductImage1"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:onClick="viewProduct"
+                    app:srcCompat="@drawable/quesa" />
+
+                <ImageView
+                    android:id="@+id/ordersProductImage2"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:onClick="viewProduct"
+                    app:srcCompat="@drawable/tacobowl" />
+
+                <ImageView
+                    android:id="@+id/ordersProductImage3"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:onClick="viewProduct"
+                    app:srcCompat="@drawable/soup" />
+
+                <ImageView
+                    android:id="@+id/ordersProductImage4"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:onClick="viewProduct"
+                    app:srcCompat="@drawable/icedcoffee" />
+
+                <ImageView
+                    android:id="@+id/ordersProductImage5"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:onClick="viewProduct"
+                    app:srcCompat="@drawable/lemonade" />
+
+                <!-- Add additional views for products as needed -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ordersProductNameHolder"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/ordersProductName1Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:onClick="viewProduct"
+                    android:paddingTop="40dp"
+                    android:text="@string/ordersProductName"
+                    android:textColor="#046305"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ordersProductName2Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:onClick="viewProduct"
+                    android:paddingTop="40dp"
+                    android:text="@string/ordersProductName"
+                    android:textColor="#046305"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ordersProductName3Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:onClick="viewProduct"
+                    android:paddingTop="40dp"
+                    android:text="@string/ordersProductName"
+                    android:textColor="#046305"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ordersProductName4Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:onClick="viewProduct"
+                    android:paddingTop="40dp"
+                    android:text="@string/ordersProductName"
+                    android:textColor="#046305"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ordersProductName5Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:onClick="viewProduct"
+                    android:paddingTop="40dp"
+                    android:text="@string/ordersProductName"
+                    android:textColor="#046305"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- Add additional views for products as needed -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ordersProductPriceHolder"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/ordersProductPrice1Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:paddingTop="40dp"
+                    android:text="@string/ordersProductPrice"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ordersProductPrice2Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:paddingTop="40dp"
+                    android:text="@string/ordersProductPrice"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ordersProductPrice3Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:paddingTop="40dp"
+                    android:text="@string/ordersProductPrice"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ordersProductPrice4Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:paddingTop="40dp"
+                    android:text="@string/ordersProductPrice"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ordersProductPrice5Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:paddingTop="40dp"
+                    android:text="@string/ordersProductPrice"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- Add additional views for products as needed -->
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

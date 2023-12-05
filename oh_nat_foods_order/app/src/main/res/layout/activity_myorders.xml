@@ -6,4 +6,166 @@
     android:layout_height="match_parent"
     tools:context=".myorders">
 
+    <TextView
+        android:id="@+id/myOrdersOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="305dp"
+        android:layout_marginBottom="598dp"
+        android:fontFamily="serif"
+        android:text="@string/myOrdersOrders"
+        android:textColor="#046305"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/ordersProductView"
+        android:layout_width="400dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="135dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/border"
+        android:scrollbarStyle="insideInset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:id="@+id/myOrdersOrderHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/MyOrdersNumHolder"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/myOrdersNum1Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/myOrderNum"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- Add additional views for products as needed -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/myOrdersQueueHolder"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/myOrdersQueueText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/myOrderQueue"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- Add additional views for products as needed -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/myOrdersStatusHolder"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/myOrdersStatusText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/myOrderCancel"
+                    android:textColor="#046305"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- Add additional views for products as needed -->
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/myOrdersTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="serif"
+        android:text="@string/title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="23sp"
+        android:textStyle="bold|normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:drawableLeftCompat="@drawable/ohnaturalfoodsicon" />
+
+    <TextView
+        android:id="@+id/myOrdersBottomBar"
+        android:layout_width="415dp"
+        android:layout_height="70dp"
+        android:background="#EFEF5B"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/myOrdersLogButton"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:onClick="onLogin"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/barLogin"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/myOrdersHomeButton"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:onClick="onHome"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/barHome"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/myOrdersAccountButton"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="128dp"
+        android:onClick="onLogin"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/barAccount"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
