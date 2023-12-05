@@ -1,58 +1,54 @@
 package com.example.oh_nat_foods_order;
 
-import androidx.annotation.NonNull;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 public class accountsummary extends AppCompatActivity {
-
-    private TextView username,name;
-
-    private DatabaseReference usernames;
-
-    String uid, uname;
-
-    protected final OnCompleteListener<DataSnapshot> onFetched = new OnCompleteListener<DataSnapshot>() {
-        @Override
-        public void onComplete(@NonNull Task<DataSnapshot> task) {
-            if(task.getResult().exists()) {
-                username.setText(uid);
-                name.setText(task.getResult().child("name").getValue().toString());
-            } else {
-                Log.e("firebase","summary: uid error");
-            }
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accountsummary);
 
-        //getting uid from previous page
-        Bundle fromLoggedIn = getIntent().getExtras();
-        uid = fromLoggedIn.getString("uid");
 
-        //initializing database reference
-        usernames = FirebaseDatabase.getInstance().getReference().child("Users");
+        Button profileButton = findViewById(R.id.profileButton); // Replace with your actual button ID
+        Button paymentMethodsButton = findViewById(R.id.paymentMethodsButton); // Replace with your actual button ID
+        Button previousOrdersButton = findViewById(R.id.previousOrdersButton); // Replace with your actual button ID
+        Button loyaltyProgramButton = findViewById(R.id.loyaltyProgramButton); // Replace with your actual button ID
+        Button signOutButton = findViewById(R.id.signOutButton);
 
-        username = (TextView) findViewById(R.id.summary_username);
-        name = (TextView) findViewById(R.id.summary_name);
 
-        //fetching user's information from database
-        fetchUserInfo(uid);
-    }
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(accountsummary.this, profileSummary.class);
+                startActivity(intent);
+            }
+        });
 
-    private void fetchUserInfo(String uid) {
-        usernames.child(uid).get().addOnCompleteListener(onFetched);
+        paymentMethodsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(accountsummary.this, paymentMethods.class);
+                startActivity(intent);
+            }
+        });
+
+        View.OnClickListener notImplementedListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(accountsummary.this, "Functionality not implemented in this version", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        previousOrdersButton.setOnClickListener(notImplementedListener);
+        loyaltyProgramButton.setOnClickListener(notImplementedListener);
+
+        //Implement signout
+        signOutButton.setOnClickListener(notImplementedListener);
     }
 }

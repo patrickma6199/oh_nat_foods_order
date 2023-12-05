@@ -25,6 +25,9 @@
             android:name=".profileSummary"
             android:exported="false" />
         <activity
+            android:name=".paymentMethods"
+            android:exported="false" />
+        <activity
             android:name=".cart"
             android:exported="false" />
         <activity
