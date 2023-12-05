@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,14 +39,15 @@ public class register extends AppCompatActivity {
                 usernames.child(username.getText().toString()).child("password").setValue(password.getText().toString());
                 usernames.child(username.getText().toString()).child("paymentMethod").setValue("null");
                 Toast.makeText(register.this, "Account Creation Successful! Redirecting to Login.", Toast.LENGTH_SHORT).show();
-                try {
-                    Thread.sleep(1000);     //pause for a moment to read the toast
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                Intent toLogin = new Intent(register.this, Login.class);
-                startActivity(toLogin);
-                finish();
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Go to login page after 1.5 seconds
+                        Intent toLogin = new Intent(register.this, Login.class);
+                        startActivity(toLogin);
+                        finish();
+                    }
+                }, 1500);
             }
         }
     };
@@ -69,18 +72,19 @@ public class register extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Code to perform on register button click
+                String usernameSubmitted = username.getText().toString();
                 String passwordSubmitted = password.getText().toString();
                 String passwordVerifySubmitted = passwordVerify.getText().toString();
 
-                if(passwordSubmitted.trim().equals(passwordVerifySubmitted.trim())){
-                    try {
-                        registerUser(username.getText().toString());
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+                if (!isValidPassword(passwordSubmitted)) {
+                    //handled in password verification function
+                    return;
+                }
+
+                if (passwordSubmitted.equals(passwordVerifySubmitted)) {
+                    registerUser(usernameSubmitted);
                 } else {
-                    Toast.makeText(register.this, "Please ensure your password matches when retyping it.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(register.this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -96,7 +100,32 @@ public class register extends AppCompatActivity {
 
     }
 
-    private void registerUser(String username) throws InterruptedException {
+    private void registerUser(String username) {
         usernames.child(username).get().addOnCompleteListener(onUsernameFetched);
+    }
+
+    //Password format checker
+    private boolean isValidPassword(String password) {
+        if (password.length() < 8) {
+            Toast.makeText(register.this, "Password must be at least 8 characters long.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!password.matches(".*[A-Z].*")) {
+            Toast.makeText(register.this, "Password must contain at least one uppercase letter.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!password.matches(".*[a-z].*")) {
+            Toast.makeText(register.this, "Password must contain at least one lowercase letter.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!password.matches(".*[@#$%^&+=].*")) {
+            Toast.makeText(register.this, "Password must contain at least one special character (@#$%^&+=).", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 }
