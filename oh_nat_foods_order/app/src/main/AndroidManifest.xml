@@ -22,6 +22,9 @@
             android:name=".accountsummary"
             android:exported="false" />
         <activity
+            android:name=".profileSummary"
+            android:exported="false" />
+        <activity
             android:name=".cart"
             android:exported="false" />
         <activity
