@@ -15,6 +15,8 @@
     </string-array>
     <string name="detailComment">Extra Comments</string>
     <string name="detailAddCart">Add to Cart</string>
+    <string name="detailBack">Back</string>
+    <string name="detailQty">Choose Quantity</string>
 
     <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>

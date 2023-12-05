@@ -22,14 +22,14 @@
         android:id="@+id/main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="28dp"
         android:drawableLeft="@drawable/ohnaturalfoodsicon"
         android:text="Oh Natural Foods Preordering"
-        android:textColor="#046305"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#046305"
         android:textSize="23dp"
         android:textStyle="bold|normal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
