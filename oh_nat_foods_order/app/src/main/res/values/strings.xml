@@ -4,7 +4,7 @@
     <string name="detailProduct">Product</string>
     <string name="detailDesc">This is a description of a product that does not exist.</string>
     <string name="detailCustom">Choose an Option:</string>
-    <string name="email_hint">Email</string>
+    <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>
     <string name="login">Login</string>
     <string name="forgot_password">Forgot Password?</string>
