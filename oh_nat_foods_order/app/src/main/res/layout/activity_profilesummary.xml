@@ -30,5 +30,129 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
+    <TextView
+        android:id="@+id/profileSum_usernameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="36dp"
+        android:text="Username:"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
+    <TextView
+        android:id="@+id/profileSum_nameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:text="Name: "
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileSum_usernameText" />
+
+    <EditText
+        android:id="@+id/profileSum_username"
+        android:background="@drawable/edittext_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:textSize="18dp"
+        android:text="ERROR"
+        app:layout_constraintStart_toEndOf="@id/profileSum_usernameText"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView" />
+
+    <EditText
+        android:id="@+id/profileSum_name"
+        android:background="@drawable/edittext_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:textSize="18dp"
+        android:text="ERROR"
+        app:layout_constraintStart_toEndOf="@id/profileSum_nameText"
+        app:layout_constraintTop_toBottomOf="@+id/profileSum_username" />
+
+    <!-- bottom bar -->
+
+    <TextView
+        android:id="@+id/profileSum_functionalityMessage"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="368dp"
+        android:text="(Loyalty Points and Personal Reviews to be implemented below)"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/main_bottomBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/main_bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#EFEF5B"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/main_homeButton"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="HOME"
+        android:textSize="25dp"
+        android:onClick="onHome"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/main_accountButton"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="128dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="ACCOUNT"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:onClick="onLogin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/main_logButton"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="264dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="LOGIN"
+        android:onClick="onLogin"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/profileSum_submit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="272dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#4CAF50"
+        android:text="Save Changes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileSum_functionalityMessage" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
