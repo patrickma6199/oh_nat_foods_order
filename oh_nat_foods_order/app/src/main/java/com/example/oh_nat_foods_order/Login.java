@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.os.Bundle;
@@ -23,6 +24,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Login extends AppCompatActivity {
 
+    SharedPreferences shared;
+    SharedPreferences.Editor editor;
+
     private EditText username;
     private EditText password;
     private Button submit;
@@ -36,6 +40,10 @@ public class Login extends AppCompatActivity {
         public void onComplete(@NonNull Task<DataSnapshot> task) {
             if(task.getResult().exists() && task.getResult().child("password").getValue().toString().equals(password.getText().toString())) {
                 Intent toOrder = new Intent(Login.this,orders.class);
+
+                //if login is successful, make uid session variable to be passed to other pages
+                editor.putString("uid",task.getResult().getKey());
+                editor.commit();
                 startActivity(toOrder);
                 finish();
             } else {
@@ -48,6 +56,10 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //initialize editor for session variables
+        shared = getApplicationContext().getSharedPreferences("mySession", MODE_PRIVATE);
+        editor = shared.edit();
 
         //initialize database reference
         usernames = FirebaseDatabase.getInstance().getReference().child("Users");

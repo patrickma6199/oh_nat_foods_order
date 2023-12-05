@@ -1,6 +1,7 @@
 package com.example.oh_nat_foods_order;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,11 +10,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class accountsummary extends AppCompatActivity {
 
+    SharedPreferences shared;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accountsummary);
 
+        shared = getApplicationContext().getSharedPreferences("mySession",MODE_PRIVATE);
+        editor = shared.edit();
 
         Button profileButton = findViewById(R.id.profileButton);
         Button paymentMethodsButton = findViewById(R.id.paymentMethodsButton);
@@ -35,6 +41,16 @@ public class accountsummary extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(accountsummary.this, paymentMethods.class);
                 startActivity(intent);
+            }
+        });
+
+        signOutButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //clears session
+                editor.clear();
+                editor.commit();
             }
         });
 
