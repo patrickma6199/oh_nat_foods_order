@@ -1,11 +1,13 @@
 package com.example.oh_nat_foods_order;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +17,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
 public class register extends AppCompatActivity {
     private EditText name;
     private EditText email;
@@ -22,11 +34,36 @@ public class register extends AppCompatActivity {
     private EditText passwordVerify;
     private Button submit;
     private TextView login;
+    private DatabaseReference emails;
+
+    protected final ValueEventListener onRegister = new ValueEventListener() {
+
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            // If data exists, toast currently stored value. Otherwise, set value to "Present"
+            if (snapshot.exists()) {
+                Toast.makeText(register.this, "The email you entered has already been used.", Toast.LENGTH_SHORT).show();
+            } else {
+                //write the value into database
+                snapshot.getRef().child("name").setValue(name.getText().toString());
+                snapshot.getRef().child("password").setValue(password.getText().toString());
+                snapshot.getRef().child("paymentMethods").setValue("null");
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+            Log.e("firebase", error.toString());
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        //get reference of firebase root
+        emails = FirebaseDatabase.getInstance().getReference().child("Users");
 
         // Initialize UI elements
         name = findViewById(R.id.register_name);
@@ -41,13 +78,12 @@ public class register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Code to perform on register button click
-                String nameSubmitted = name.getText().toString();
                 String emailSubmitted = email.getText().toString();
                 String passwordSubmitted = password.getText().toString();
                 String passwordVerifySubmitted = passwordVerify.getText().toString();
 
                 if(passwordSubmitted.trim().equals(passwordVerifySubmitted.trim())){
-                    registerUser(nameSubmitted, emailSubmitted, passwordSubmitted, passwordVerifySubmitted);
+                    registerUser(emailSubmitted);
                 } else {
                     Toast.makeText(register.this, "Please ensure your password matches when retyping it.", Toast.LENGTH_SHORT).show();
                 }
@@ -65,7 +101,7 @@ public class register extends AppCompatActivity {
 
     }
 
-    private void registerUser(String name, String email, String password, String passwordVerify) {
-        // Implement backend here
+    private void registerUser(String email) {
+        emails.child(email).addListenerForSingleValueEvent(onRegister);
     }
 }

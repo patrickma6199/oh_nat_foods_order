@@ -14,10 +14,11 @@
     <string name="already_have_account">Already have an account? Log in.</string>
 
     <string-array name="detailCustomArray">
-        <string>Option 1</string>
-        <string>Option 2</string>
-        <string>Option 3</string>
+        <item>Option 1</item>
+        <item>Option 2</item>
+        <item>Option 3</item>
     </string-array>
+
     <string name="detailComment">Extra Comments</string>
     <string name="detailAddCart">Add to Cart</string>
 
