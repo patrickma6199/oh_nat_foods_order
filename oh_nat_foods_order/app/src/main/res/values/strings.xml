@@ -60,7 +60,7 @@
 
     <string name="add_payment_method_title">Add Payment Method</string>
     <string name="card_number_hint">Card Number</string>
-    <string name="expiry_date_hint">Exp. Date</string>
+    <string name="expiry_date_hint">Exp. Date (MMYY)</string>
     <string name="cvv_hint">CVV</string>
     <string name="country_hint">Country</string>
     <string name="postal_code_hint">Postal Code</string>
