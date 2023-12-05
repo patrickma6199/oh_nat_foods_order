@@ -79,7 +79,7 @@
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:layout_marginStart="128dp"
-        android:onClick="onLogin"
+        android:onClick="onAccount"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         android:text="@string/barAccount"
