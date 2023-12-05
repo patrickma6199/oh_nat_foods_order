@@ -51,6 +51,10 @@ public class accountsummary extends AppCompatActivity {
                 //clears session
                 editor.clear();
                 editor.commit();
+
+                //send intent to logged out home
+                Intent logout = new Intent(accountsummary.this,MainActivity.class);
+                startActivity(logout);
             }
         });
 
