@@ -15,10 +15,10 @@ public class accountsummary extends AppCompatActivity {
         setContentView(R.layout.activity_accountsummary);
 
 
-        Button profileButton = findViewById(R.id.profileButton); // Replace with your actual button ID
-        Button paymentMethodsButton = findViewById(R.id.paymentMethodsButton); // Replace with your actual button ID
-        Button previousOrdersButton = findViewById(R.id.previousOrdersButton); // Replace with your actual button ID
-        Button loyaltyProgramButton = findViewById(R.id.loyaltyProgramButton); // Replace with your actual button ID
+        Button profileButton = findViewById(R.id.profileButton);
+        Button paymentMethodsButton = findViewById(R.id.paymentMethodsButton);
+        Button previousOrdersButton = findViewById(R.id.previousOrdersButton);
+        Button loyaltyProgramButton = findViewById(R.id.loyaltyProgramButton);
         Button signOutButton = findViewById(R.id.signOutButton);
 
 

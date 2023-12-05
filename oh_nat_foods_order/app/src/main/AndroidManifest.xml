@@ -16,6 +16,9 @@
             android:name=".orderdetail"
             android:exported="false" />
         <activity
+            android:name=".addPaymentMethod"
+            android:exported="false" />
+        <activity
             android:name=".myorders"
             android:exported="false" />
         <activity
