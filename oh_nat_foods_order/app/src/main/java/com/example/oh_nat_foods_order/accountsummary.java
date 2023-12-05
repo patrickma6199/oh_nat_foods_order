@@ -24,7 +24,6 @@ public class accountsummary extends AppCompatActivity {
         Button profileButton = findViewById(R.id.profileButton);
         Button paymentMethodsButton = findViewById(R.id.paymentMethodsButton);
         Button previousOrdersButton = findViewById(R.id.previousOrdersButton);
-        Button loyaltyProgramButton = findViewById(R.id.loyaltyProgramButton);
         Button signOutButton = findViewById(R.id.signOutButton);
 
 
@@ -66,7 +65,6 @@ public class accountsummary extends AppCompatActivity {
         };
 
         previousOrdersButton.setOnClickListener(notImplementedListener);
-        loyaltyProgramButton.setOnClickListener(notImplementedListener);
 
         //Implement signout
         signOutButton.setOnClickListener(notImplementedListener);
