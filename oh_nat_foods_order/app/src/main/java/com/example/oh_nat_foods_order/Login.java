@@ -36,6 +36,7 @@ public class Login extends AppCompatActivity {
         public void onComplete(@NonNull Task<DataSnapshot> task) {
             if(task.getResult().exists() && task.getResult().child("password").getValue().toString().equals(password.getText().toString())) {
                 Intent toOrder = new Intent(Login.this,orders.class);
+                toOrder.putExtra("uid",task.getResult().getKey());
                 startActivity(toOrder);
                 finish();
             } else {
