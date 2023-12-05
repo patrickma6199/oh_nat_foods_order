@@ -1,9 +1,21 @@
 <resources>
     <string name="app_name">oh_nat_foods_order</string>
+    <string name="title">Oh Natural Foods Preordering</string>
+    <string name="barLogin">LOGIN</string>
+    <string name="barAccount">ACCOUNT</string>
+    <string name="barHome">HOME</string>
 
     <string name="detailProduct">Product</string>
     <string name="detailDesc">This is a description of a product that does not exist.</string>
     <string name="detailCustom">Choose an Option:</string>
+    <string-array name="detailCustomArray">
+        <item>Option 1</item>
+        <item>Option 2</item>
+        <item>Option 3</item>
+    </string-array>
+    <string name="detailComment">Extra Comments</string>
+    <string name="detailAddCart">Add to Cart</string>
+
     <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>
     <string name="login">Login</string>
@@ -13,17 +25,22 @@
     <string name="register">Register</string>
     <string name="already_have_account">Already have an account? Log in.</string>
 
-    <string-array name="detailCustomArray">
-        <item>Option 1</item>
-        <item>Option 2</item>
-        <item>Option 3</item>
-    </string-array>
+    <string name="ordersCart">VIEW CART</string>
+    <string name="ordersProductName">Product</string>
+    <string name="ordersProductPrice">$0.00</string>
 
-    <string name="detailComment">Extra Comments</string>
-    <string name="detailAddCart">Add to Cart</string>
+    <string name="cartMyCart">My Cart</string>
+    <string name="cartRemoveProduct">Remove</string>
+    <string name="cartQty">Qty: 1</string>
+    <string name="cartPrice">$0.00</string>
+    <string name="cartTax">GST: 0.00</string>
+    <string name="cartSubtotal">Subtotal: $0.00</string>
+    <string name="cartTotal">Total: $0.00</string>
+    <string name="cartCheckout">CHECKOUT</string>
 
-
-
-
-
+    <string name="myOrdersOrders">My Orders</string>
+    <string name="myOrderNum">Order#1111</string>
+    <string name="myOrderQueue"># in Queue: 1</string>
+    <string name="myOrderCancel">Cancel Order</string>
+    <string name="myOrderPickup">Confirm Pickup</string>
 </resources>
