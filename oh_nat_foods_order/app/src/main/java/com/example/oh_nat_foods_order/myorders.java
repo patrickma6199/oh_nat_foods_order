@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -16,19 +17,31 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class myorders extends AppCompatActivity {
 
-    RecyclerView recyclerView;
+    private DatabaseReference orders;
 
-    TextView home, account, orders;
+    private SharedPreferences shared;
+
+    private LinearLayout myOrdersContainer;
+    TextView homeButton, accountButton, ordersButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myorders);
+
+        orders = FirebaseDatabase.getInstance().getReference().child("Orders").child("username");
+
+        myOrdersContainer = (LinearLayout) findViewById(R.id.myOrdersContainer);
+
+        orders.get();
 
         //initializing bottom menu bar
         //home = (TextView) findViewById(R.id.home);
