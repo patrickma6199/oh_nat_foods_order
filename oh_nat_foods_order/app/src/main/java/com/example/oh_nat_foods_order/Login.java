@@ -73,9 +73,6 @@ public class Login extends AppCompatActivity {
         submit = findViewById(R.id.login_submit);
         register = findViewById(R.id.login_register);
         forgotPassword = findViewById(R.id.login_forgotPassword);
-        home = (TextView) findViewById(R.id.loginHomeButton);
-        login = (TextView) findViewById(R.id.loginLogButton);
-        account = (TextView) findViewById(R.id.loginAccountButton);
 
 
         //Login button
