@@ -27,6 +27,7 @@ public class paymentMethods extends AppCompatActivity {
     private DatabaseReference methods;
     private Button addNewMethod;
     private LinearLayout paymentMethodsContainer;
+    private Button lastClickedDeleteButton = null;
 
     protected OnCompleteListener<DataSnapshot> onFetched = new OnCompleteListener<DataSnapshot>() {
         @Override
@@ -36,17 +37,24 @@ public class paymentMethods extends AppCompatActivity {
             } else {
                 DataSnapshot origin = task.getResult();
                 for (DataSnapshot method : origin.getChildren()) {
-                    // Get payment method details
                     String cardNumber = method.getKey();
 
-                    // Inflate payment method item view
                     View paymentMethodView = LayoutInflater.from(paymentMethods.this).inflate(R.layout.payment_method_item, paymentMethodsContainer, false);
                     TextView paymentMethodText = paymentMethodView.findViewById(R.id.paymentMethodText);
                     Button deleteButton = paymentMethodView.findViewById(R.id.deletePaymentMethodButton);
 
-                    // Set text and delete button action
                     paymentMethodText.setText("Card **** **** **** " + cardNumber.substring(cardNumber.length() - 4));
-                    deleteButton.setOnClickListener(v -> deletePaymentMethod(cardNumber));
+                    deleteButton.setOnClickListener(v -> {
+                        if (lastClickedDeleteButton != null && lastClickedDeleteButton != deleteButton) {
+                            lastClickedDeleteButton.setText("Delete");
+                        }
+                        if (deleteButton.getText().toString().equals("Confirm?")) {
+                            deletePaymentMethod(cardNumber);
+                        } else {
+                            deleteButton.setText("Confirm?");
+                            lastClickedDeleteButton = deleteButton;
+                        }
+                    });
 
                     paymentMethodsContainer.addView(paymentMethodView);
                 }
@@ -65,7 +73,6 @@ public class paymentMethods extends AppCompatActivity {
         methods = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("paymentMethod");
 
         paymentMethodsContainer = findViewById(R.id.paymentMethodsContainer);
-
         methods.get().addOnCompleteListener(onFetched);
 
         addNewMethod = findViewById(R.id.addPaymentMethodButton);
@@ -77,10 +84,8 @@ public class paymentMethods extends AppCompatActivity {
     }
 
     private void deletePaymentMethod(String cardNumber) {
-        // Delete payment method from Firebase
         methods.child(cardNumber).removeValue().addOnSuccessListener(aVoid -> {
             Toast.makeText(paymentMethods.this, "Payment Method Deleted", Toast.LENGTH_SHORT).show();
-            // Refresh the list
             recreate();
         }).addOnFailureListener(e -> {
             Toast.makeText(paymentMethods.this, "Failed to Delete Payment Method", Toast.LENGTH_SHORT).show();
