@@ -59,10 +59,10 @@
         android:id="@+id/myOrdersLogButton"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:onClick="onLogin"
+        android:layout_marginEnd="4dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:text="@string/barLogin"
+        android:text="ORDERS"
         android:textAlignment="center"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -72,7 +72,6 @@
         android:id="@+id/myOrdersHomeButton"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:onClick="onHome"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         android:text="@string/barHome"
@@ -86,7 +85,6 @@
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:layout_marginStart="128dp"
-        android:onClick="onLogin"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         android:text="@string/barAccount"
@@ -95,15 +93,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/MyOrdersRecyclerView"
-        android:layout_width="382dp"
-        android:layout_height="420dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ScrollView
+        android:id="@+id/myOrdersScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="60dp"
+        android:contentDescription="Payment Methods ScrollView"
+        app:layout_constraintBottom_toTopOf="@+id/myOrdersBottomBar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.585" />
+        app:layout_constraintTop_toBottomOf="@id/myOrdersOrder"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:id="@+id/paymentMethodsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
