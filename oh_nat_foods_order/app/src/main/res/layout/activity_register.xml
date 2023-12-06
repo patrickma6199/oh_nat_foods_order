@@ -119,11 +119,12 @@
 
     <!-- Already have an account prompt -->
     <TextView
+
         android:id="@+id/register_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/already_have_account"
-        android:textColor="#000000"
+        android:textColor="#046305"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

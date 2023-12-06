@@ -101,6 +101,7 @@
 
     <!-- Register Account Prompt -->
     <TextView
+        android:textColor="#046305"
         android:id="@+id/login_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
