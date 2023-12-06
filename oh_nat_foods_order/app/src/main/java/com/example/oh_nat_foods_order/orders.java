@@ -34,9 +34,6 @@ import java.util.List;
 public class orders extends AppCompatActivity {
 
     private ItemAdapter itemAdapter;
-    private LinearLayout itemContainer;
-    SharedPreferences shared;
-    String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +48,6 @@ public class orders extends AppCompatActivity {
 
         //retrieve items from database
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("items");
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -65,7 +61,7 @@ public class orders extends AppCompatActivity {
 
                     //add new item layout to LinearLayout
                     LinearLayout newItemLayout = itemAdapter.createItemLayout(orders.this, item);
-                    itemContainer.addView(newItemLayout);
+                    recyclerView.addView(newItemLayout);
                 }
             }
 
@@ -91,7 +87,7 @@ public class orders extends AppCompatActivity {
         }
     }
 
-    public static class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
+    public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         private List<Item> itemList;
 
         public ItemAdapter() {
@@ -130,7 +126,7 @@ public class orders extends AppCompatActivity {
             return itemList.size();
         }
 
-        static class ViewHolder extends RecyclerView.ViewHolder {
+        class ViewHolder extends RecyclerView.ViewHolder {
             ImageView itemImageView;
             TextView itemNameTextView;
             TextView itemPriceTextView;
@@ -140,11 +136,23 @@ public class orders extends AppCompatActivity {
                 itemImageView = itemView.findViewById(R.id.ordersProductImage);
                 itemNameTextView = itemView.findViewById(R.id.ordersProductNameText);
                 itemPriceTextView = itemView.findViewById(R.id.ordersProductPriceText);
+
+                //setup onClick listeners for name and image
+                itemNameTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        viewProduct(getBindingAdapterPosition(), itemImageView);
+                    }
+                });
+
+                itemImageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        viewProduct(getBindingAdapterPosition(), itemImageView);
+                    }
+                });
             }
         }
-
-        // Other methods
-
         public LinearLayout createItemLayout(Context context, Item item) {
             //create new LinearLayout for each item
             LinearLayout itemLayout = new LinearLayout(context);
@@ -189,6 +197,29 @@ public class orders extends AppCompatActivity {
             productPriceHolder.addView(itemPriceTextView);
 
             return itemLayout;
+        }
+
+        public void viewProduct(int position, ImageView clickedImageView) {
+            if (position >= 0 && position < itemList.size()) {
+                Item clickedItem = itemList.get(position);
+
+                if (clickedItem != null) {
+                    // Create an Intent to start the new activity
+                    Intent intent = new Intent(clickedImageView.getContext(), orderdetail.class);
+
+                    // Pass the product name to the new activity using a Bundle
+                    intent.putExtra("productName", clickedItem.getItemName());
+
+                    // Start the new activity
+                    clickedImageView.getContext().startActivity(intent);
+                } else {
+                    // Handle the case where clickedItem is null
+                    Toast.makeText(clickedImageView.getContext(), "Error: Item data is null", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                // Handle the case where position is out of bounds
+                Toast.makeText(clickedImageView.getContext(), "Error: Invalid position", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
