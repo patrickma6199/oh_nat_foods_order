@@ -65,8 +65,5 @@ public class accountsummary extends AppCompatActivity {
         };
 
         previousOrdersButton.setOnClickListener(notImplementedListener);
-
-        //Implement signout
-        signOutButton.setOnClickListener(notImplementedListener);
     }
 }

@@ -1,13 +1,25 @@
 package com.example.oh_nat_foods_order; // Replace with your actual package name
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class addPaymentMethod extends AppCompatActivity {
 
@@ -15,10 +27,48 @@ public class addPaymentMethod extends AppCompatActivity {
     private Spinner countrySpinner;
     private Button submitPaymentMethodButton;
 
+    private DatabaseReference user;
+
+    private SharedPreferences shared;
+    private String uid;
+    private String formattedCardNumber, formattedExpiryDate, formattedPostalCode;
+
+    protected final OnCompleteListener<DataSnapshot> onFetched = new OnCompleteListener<DataSnapshot>() {
+        @Override
+        public void onComplete(@NonNull Task<DataSnapshot> task) {
+            //entering payment info to database
+            if(task.getResult().child("paymentMethod").child(formattedCardNumber).exists()) {
+                Toast.makeText(addPaymentMethod.this,"You already have this payment method registered.",Toast.LENGTH_SHORT).show();
+            } else {
+                user.child("paymentMethod").child(formattedCardNumber).child("expiryDate").setValue(formattedExpiryDate);
+                user.child("paymentMethod").child(formattedCardNumber).child("CVV").setValue(cvvEditText.getText().toString());
+                user.child("paymentMethod").child(formattedCardNumber).child("postalCode").setValue(formattedPostalCode);
+                user.child("paymentMethod").child(formattedCardNumber).child("country").setValue(countrySpinner.getSelectedItem().toString());
+                Toast.makeText(addPaymentMethod.this,"Payment Method Added Successfully!",Toast.LENGTH_SHORT).show();
+
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Go to paymentMethods page after 1.5 seconds
+                        Intent toPaymentMethods = new Intent(addPaymentMethod.this,paymentMethods.class);
+                        startActivity(toPaymentMethods);
+                        finish();
+                    }
+                }, 1500);
+            }
+    }};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addpaymentmethod);
+
+        // get uid session variable
+        shared = getApplicationContext().getSharedPreferences("mySession", MODE_PRIVATE);
+        uid = shared.getString("uid","");
+
+        //get firebase reference
+        user = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
 
         cardNumberEditText = findViewById(R.id.cardNumberEditText);
         expiryDateEditText = findViewById(R.id.expiryDateEditText);
@@ -66,11 +116,12 @@ public class addPaymentMethod extends AppCompatActivity {
             return;
         }
 
-        String formattedCardNumber = formatCardNumber(cardNumber);
-        String formattedExpiryDate = formatExpiryDate(expiryDate);
-        String formattedPostalCode = formatPostalCode(postalCode);
+        formattedCardNumber = formatCardNumber(cardNumber);
+        formattedExpiryDate = formatExpiryDate(expiryDate);
+        formattedPostalCode = formatPostalCode(postalCode);
 
         // TODO: Implement call to Firebase or other backend service with formatted data
+        user.get().addOnCompleteListener(onFetched);
     }
 
     private boolean validateCardNumber(String cardNumber) {
