@@ -52,7 +52,7 @@
         <item>10</item>
     </string-array>
 
-    <string name="myOrdersOrders">My Orders</string>
+    <string name="myOrdersOrders">MY ORDERS</string>
     <string name="myOrderNum">Order#1111</string>
     <string name="myOrderQueue"># in Queue: 1</string>
     <string name="myOrderCancel">Cancel Order</string>
