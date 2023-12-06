@@ -51,13 +51,13 @@ class Order {
 }
 
 class ItemAdapter extends RecyclerView.Adapter<orders.ItemAdapter.ViewHolder> {
-    private List<orders.Item> itemList;
+    private List<Order> itemList;
 
     public ItemAdapter() {
         this.itemList = new ArrayList<>();
     }
 
-    public void setItemList(List<orders.Item> itemList) {
+    public void setItemList(List<Order> itemList) {
         this.itemList = itemList;
     }
 
@@ -68,16 +68,16 @@ class ItemAdapter extends RecyclerView.Adapter<orders.ItemAdapter.ViewHolder> {
     @NonNull
     @Override
     public orders.ItemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.orders_list_item, parent, false);
         return new orders.ItemAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull orders.ItemAdapter.ViewHolder holder, int position) {
-        orders.Item item = itemList.get(position);
+        Order item = itemList.get(position);
 
         //bind data to views
-        holder.itemNameTextView.setText(item.getItemName());
+        holder.itemNameTextView.setText(item.getOrderId());
         holder.itemPriceTextView.setText(String.valueOf(item.getItemPrice()));
         //we need to handle loading images into the ImageView (poss use library like Picasso or Glide for this)
         //for now, set a placeholder image
@@ -104,7 +104,7 @@ class ItemAdapter extends RecyclerView.Adapter<orders.ItemAdapter.ViewHolder> {
 
     // Other methods
 
-    public LinearLayout createItemLayout(Context context, orders.Item item) {
+    public LinearLayout createItemLayout(Context context, Order item) {
         //create new LinearLayout for each item
         LinearLayout itemLayout = new LinearLayout(context);
         itemLayout.setOrientation(LinearLayout.HORIZONTAL);

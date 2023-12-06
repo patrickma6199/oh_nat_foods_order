@@ -30,9 +30,9 @@ public class Login extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private Button submit;
-    private Button login;
-    private Button account;
-    private Button home;
+    private TextView login;
+    private TextView account;
+    private TextView home;
     private TextView register;
     private TextView forgotPassword;
 
@@ -73,6 +73,10 @@ public class Login extends AppCompatActivity {
         submit = findViewById(R.id.login_submit);
         register = findViewById(R.id.login_register);
         forgotPassword = findViewById(R.id.login_forgotPassword);
+        home = (TextView) findViewById(R.id.loginHomeButton);
+        login = (TextView) findViewById(R.id.loginLogButton);
+        account = (TextView) findViewById(R.id.loginAccountButton);
+
 
         //Login button
         submit.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +107,7 @@ public class Login extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent toHome = new Intent(Login.this,MainActivity.class);]
+                Intent toHome = new Intent(Login.this,MainActivity.class);
                 startActivity(toHome);
                 finish();
             }
