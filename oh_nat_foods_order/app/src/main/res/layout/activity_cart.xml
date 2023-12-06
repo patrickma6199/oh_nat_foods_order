@@ -6,13 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".cart">
 
+    <ImageView
+        android:id="@+id/main_logoImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ohnaturalfoodsicon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"/>
+
+    <!-- Title below the logo -->
+    <TextView
+        android:id="@+id/main_titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Oh Natural Foods Preordering"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#046305"
+        app:layout_constraintTop_toBottomOf="@id/main_logoImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
     <Button
         android:id="@+id/cartBackButton"
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="185dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="546dp"
+        android:layout_marginTop="596dp"
         android:layout_marginEnd="210dp"
         android:layout_marginBottom="125dp"
         android:backgroundTint="#828882"
@@ -29,7 +53,7 @@
         android:layout_width="185dp"
         android:layout_height="60dp"
         android:layout_marginStart="203dp"
-        android:layout_marginTop="546dp"
+        android:layout_marginTop="596dp"
         android:layout_marginEnd="23dp"
         android:layout_marginBottom="125dp"
         android:backgroundTint="#4CAF50"
@@ -88,29 +112,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/cartTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="36dp"
-        android:fontFamily="serif"
-        android:text="@string/title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="23sp"
-        android:textStyle="bold|normal"
-        app:drawableLeftCompat="@drawable/ohnaturalfoodsicon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:id="@+id/cartProductView"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:layout_marginStart="6dp"
-        android:layout_marginTop="135dp"
+        android:layout_marginTop="155dp"
         android:layout_marginEnd="6dp"
-        android:layout_marginBottom="195dp"
+        android:layout_marginBottom="175dp"
         android:background="@drawable/border2"
         android:scrollbarStyle="insideInset"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -244,9 +253,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="130dp"
         android:layout_marginEnd="305dp"
-        android:layout_marginBottom="598dp"
+        android:layout_marginBottom="588dp"
         android:fontFamily="serif"
         android:text="@string/cartMyCart"
         android:textColor="#046305"
