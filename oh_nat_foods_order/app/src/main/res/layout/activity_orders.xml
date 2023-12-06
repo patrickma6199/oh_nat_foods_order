@@ -23,7 +23,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.746" />
 
     <ImageView
         android:id="@+id/main_logoImageView"
@@ -50,6 +50,16 @@
         android:layout_marginTop="16dp"/>
 
     <ImageView
+        android:id="@+id/ordersCartButton"
+        android:layout_width="43dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
         android:id="@+id/main_logoImageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,53 +69,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/ordersBottomBar"
-        android:layout_width="415dp"
-        android:layout_height="70dp"
-        android:background="#EFEF5B"
+    <LinearLayout
+        android:id="@+id/main_bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#4CAF50"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:orientation="horizontal"
+        android:gravity="center">
 
-    <TextView
-        android:id="@+id/ordersLogButton"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:onClick="onLogin"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="@string/barLogin"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <ImageView
+            android:id="@+id/main_homeButton"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:onClick="onHome"
+            android:src="@drawable/home" />
 
-    <TextView
-        android:id="@+id/ordersHomeButton"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:onClick="onHome"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="@string/barHome"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/main_cartButton"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:onClick="onCart"
+            android:src="@drawable/orders" />
 
-    <TextView
-        android:id="@+id/ordersAccountButton"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="128dp"
-        android:onClick="onAccount"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="@string/barAccount"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/main_accountButton"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:onClick="onAccount"
+            android:src="@drawable/account" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ordersProductView"

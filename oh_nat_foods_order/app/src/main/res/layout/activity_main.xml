@@ -53,65 +53,58 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_mainImage" />
 
+    <!-- Bottom Bar with modified color -->
+
     <Button
         android:id="@+id/main_loginButton"
         android:layout_width="140dp"
         android:layout_height="50dp"
-        android:backgroundTint="#4CAF50"
-        android:text="LOGIN"
-        android:onClick="onLogin"
-        app:layout_constraintTop_toBottomOf="@+id/main_orderButton"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="132dp"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="132dp" />
+        android:backgroundTint="#4CAF50"
+        android:onClick="onRegister"
+        android:text="REGISTER"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_orderButton" />
 
-    <!-- Bottom Bar with modified color -->
-    <TextView
+    <LinearLayout
         android:id="@+id/main_bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:background="#4CAF50"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/main_homeButton"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:onClick="onHome"
+            android:src="@drawable/home" />
+
+        <ImageView
+            android:id="@+id/main_cartButton"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:onClick="onLogin"
+            android:src="@drawable/orders" />
+
+        <ImageView
+            android:id="@+id/main_accountButton"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:onClick="onLogin"
+            android:src="@drawable/account" />
+    </LinearLayout>
 
     <!-- Home Icon -->
 
     <!-- Cart Icon (centered) -->
 
     <!-- Account Icon -->
-
-    <ImageView
-        android:id="@+id/main_homeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="onHome"
-        android:src="@drawable/home"
-        app:layout_constraintBottom_toBottomOf="@id/main_bottomBar"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/main_cartButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:onClick="onCart"
-        android:src="@drawable/cart"
-        app:layout_constraintBottom_toBottomOf="@id/main_bottomBar"
-        app:layout_constraintEnd_toStartOf="@id/main_accountButton"
-        app:layout_constraintHorizontal_bias="0.606"
-        app:layout_constraintStart_toEndOf="@id/main_homeButton" />
-
-    <ImageView
-        android:id="@+id/main_accountButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="4dp"
-        android:onClick="onAccount"
-        android:src="@drawable/account"
-        app:layout_constraintBottom_toBottomOf="@id/main_bottomBar"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
