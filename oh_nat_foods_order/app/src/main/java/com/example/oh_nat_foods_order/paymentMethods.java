@@ -51,7 +51,7 @@ public class paymentMethods extends AppCompatActivity {
         shared = getApplicationContext().getSharedPreferences("mySession",MODE_PRIVATE);
         uid = shared.getString("uid","");
 
-        methods = FirebaseDatabase.getInstance().getReference().child(uid).child("paymentMethod");
+        methods = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("paymentMethod");
 
         //can fetch user's payment info here with:
         methods.get().addOnCompleteListener(onFetched);
