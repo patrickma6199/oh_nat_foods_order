@@ -9,25 +9,31 @@
 
     <LinearLayout
         android:id="@+id/MyOrdersNumHolder"
-        android:layout_width="125dp"
+        android:layout_width="160dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="8dp"
-        android:gravity="center">
+        android:padding="8dp">
 
         <TextView
-            android:id="@+id/myOrdersNum1Text"
+            android:id="@+id/myOrdersNumText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/myOrderNum"
             android:textSize="20sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/myOrdersDetailsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Items"
+            android:ellipsize="end" />
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/myOrdersQueueHolder"
-        android:layout_width="140dp"
+        android:layout_width="110dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="8dp"
@@ -37,7 +43,15 @@
             android:id="@+id/myOrdersQueueText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/myOrderQueue"
+            android:text="Queue #: "
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/myOrdersQueueNumText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1111"
             android:textSize="20sp"
             android:textStyle="bold" />
 

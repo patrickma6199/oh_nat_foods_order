@@ -53,8 +53,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_mainImage" />
 
-
-
     <Button
         android:id="@+id/main_loginButton"
         android:layout_width="140dp"
