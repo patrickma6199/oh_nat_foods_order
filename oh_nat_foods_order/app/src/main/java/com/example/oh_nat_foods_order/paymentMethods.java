@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -47,11 +48,13 @@ public class paymentMethods extends AppCompatActivity {
                     deleteButton.setOnClickListener(v -> {
                         if (lastClickedDeleteButton != null && lastClickedDeleteButton != deleteButton) {
                             lastClickedDeleteButton.setText("Delete");
+                            lastClickedDeleteButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, lastClickedDeleteButton.getTextSize());
                         }
                         if (deleteButton.getText().toString().equals("Confirm?")) {
                             deletePaymentMethod(cardNumber);
                         } else {
                             deleteButton.setText("Confirm?");
+                            deleteButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, deleteButton.getTextSize() - getResources().getDisplayMetrics().scaledDensity);
                             lastClickedDeleteButton = deleteButton;
                         }
                     });
