@@ -1,0 +1,36 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:background="?attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/customOptionName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Customization Name"
+        android:textSize="19sp"
+
+        android:layout_gravity="center_vertical"/>
+
+    <TextView
+        android:id="@+id/customOptionPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$0.00"
+        android:textSize="19sp"
+        android:layout_marginEnd="16dp"
+        android:layout_gravity="center_vertical"/>
+
+    <CheckBox
+        android:id="@+id/customOptionCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"/>
+</LinearLayout>

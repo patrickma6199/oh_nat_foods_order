@@ -4,74 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:backgroundTint="#FFFFFF"
-    tools:context=".orderdetail">
+    tools:context=".OrderDetailsActivity">
 
-    <Button
-        android:id="@+id/detailBackButton"
-        style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="185dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="546dp"
-        android:layout_marginEnd="210dp"
-        android:layout_marginBottom="125dp"
-        android:backgroundTint="#828882"
-        android:text="@string/detailBack"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/detailBottomBar"
-        android:layout_width="415dp"
-        android:layout_height="70dp"
-        android:background="#ffff00"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/detailHomeButton"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="HOME"
-        android:textAlignment="center"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/detailAccountButton"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="128dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="ACCOUNT"
-        android:textAlignment="center"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/detailLogButton"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="LOGIN"
-        android:textAlignment="center"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+    <!-- Logo ImageView -->
     <ImageView
-        android:id="@+id/main_logoImageView"
+        android:id="@+id/orderDetailsLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ohnaturalfoodsicon"
@@ -80,168 +17,74 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="32dp"/>
 
-    <!-- Title below the logo -->
+    <!-- Title TextView -->
     <TextView
-        android:id="@+id/main_titleTextView"
+        android:id="@+id/orderDetailsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Oh Natural Foods Preordering"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#046305"
-        app:layout_constraintTop_toBottomOf="@id/main_logoImageView"
+        app:layout_constraintTop_toBottomOf="@id/orderDetailsLogo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
+    <!-- Product Image -->
+    <ImageView
+        android:id="@+id/orderDetailsImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/orderDetailsTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/back"/> <!-- Replace with actual image source -->
+
+    <!-- Product Description -->
     <TextView
-        android:id="@+id/detailProdDescText"
-        android:layout_width="365dp"
-        android:layout_height="385dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="85dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="220dp"
-        android:background="@drawable/border2"
-        android:paddingLeft="10dp"
-        android:paddingTop="60dp"
-        android:paddingRight="10dp"
-        android:text="@string/detailDesc"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/orderDetailsDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Description Here"
+        app:layout_constraintTop_toBottomOf="@id/orderDetailsImage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/detailProdText"
-        android:layout_width="340dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="550dp"
-        android:fontFamily="serif"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:text="@string/detailProduct"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="#046305"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_marginTop="16dp"/>
 
-    <TextView
-        android:id="@+id/detailOptions"
-        android:layout_width="160dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="325dp"
-        android:layout_marginEnd="200dp"
-        android:layout_marginBottom="375dp"
-        android:background="#FFFFBE"
-        android:text="@string/detailCustom"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+    <!-- ScrollView for Customization Options -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/orderDetailsDescription"
+        app:layout_constraintBottom_toTopOf="@id/addToCartButton"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp">
 
-    <TextView
-        android:id="@+id/detailQuantity"
-        android:layout_width="160dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="276dp"
-        android:layout_marginEnd="203dp"
-        android:layout_marginBottom="406dp"
-        android:background="#FFFFBE"
-        android:text="@string/detailQty"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <!-- Customization Options Container -->
+        <LinearLayout
+            android:id="@+id/customOptionsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- Dynamic Customization Options will be added here -->
+        </LinearLayout>
+    </ScrollView>
 
-    <Spinner
-        android:id="@+id/detailOptionSpinner"
-        android:layout_width="160dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="171dp"
-        android:layout_marginTop="-145dp"
-        android:background="@drawable/border"
-        android:entries="@array/detailCustomArray"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:spinnerMode="dialog"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/detailQtySpinner"
-        android:layout_width="160dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="258dp"
-        android:layout_marginBottom="264dp"
-        android:background="@drawable/border"
-        android:entries="@array/detailQtyArray"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:spinnerMode="dialog"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.378" />
-
+    <!-- Add to Cart Button -->
     <Button
-        android:id="@+id/detailAddCartButton"
-        style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="185dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="203dp"
-        android:layout_marginTop="546dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginBottom="125dp"
-        android:backgroundTint="#4CAF50"
-        android:text="@string/detailAddCart"
+        android:id="@+id/addToCartButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add to Cart"
+        android:backgroundTint="#046305"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/detailCommentEdit"
-        android:layout_width="325dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="395dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="295dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:inputType="text"
-        android:outlineAmbientShadowColor="#4CAF50"
-        android:outlineProvider="paddedBounds"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:text="@string/detailComment"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginBottom="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

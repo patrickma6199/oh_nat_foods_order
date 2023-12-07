@@ -1,240 +1,106 @@
 package com.example.oh_nat_foods_order;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class orders extends AppCompatActivity {
 
-    private ItemAdapter itemAdapter;
+    private DatabaseReference productsRef;
+    private LinearLayout itemsContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orders);
 
-        itemAdapter = new ItemAdapter();
+        productsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+        itemsContainer = findViewById(R.id.order_items_container);
 
-        RecyclerView recyclerView = findViewById(R.id.ordersProductView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(itemAdapter);
+        ImageView homeButton = findViewById(R.id.main_homeButton);
+        ImageView cartButton = findViewById(R.id.main_cartButton);
+        ImageView accountButton = findViewById(R.id.main_accountButton);
 
-        //retrieve items from database
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("items");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        homeButton.setOnClickListener(view -> navigateToHome());
+        cartButton.setOnClickListener(view -> navigateToCart());
+        accountButton.setOnClickListener(view -> navigateToAccount());
+
+        productsRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                List<Item> itemList = new ArrayList<>();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Item item = snapshot.getValue(Item.class);
-                    itemList.add(item);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                itemsContainer.removeAllViews();
+                for (DataSnapshot productSnapshot : dataSnapshot.getChildren()) {
+                    View itemView = LayoutInflater.from(orders.this).inflate(R.layout.item_order, itemsContainer, false);
+                    TextView productName = itemView.findViewById(R.id.item_order_name);
+                    TextView productPrice = itemView.findViewById(R.id.item_order_price);
+                    TextView productDescription = itemView.findViewById(R.id.item_order_description);
+                    ImageView productImage = itemView.findViewById(R.id.item_order_image);
 
-                    //update adapter with new data
-                    itemAdapter.setItemList(itemList);
+                    String name = productSnapshot.child("name").getValue(String.class);
+                    Double price = productSnapshot.child("price").getValue(Double.class);
+                    String description = productSnapshot.child("description").getValue(String.class);
+                    String imageUrl = productSnapshot.child("imageUrl").getValue(String.class);
 
-                    //add new item layout to LinearLayout
-                    LinearLayout newItemLayout = itemAdapter.createItemLayout(orders.this, item);
-                    recyclerView.addView(newItemLayout);
+                    // Additional code to handle customizations
+                    DataSnapshot customizationsSnapshot = productSnapshot.child("Custom");
+                    HashMap<String, Double> customizations = new HashMap<>();
+                    for (DataSnapshot customOption : customizationsSnapshot.getChildren()) {
+                        customizations.put(customOption.getKey(), customOption.getValue(Double.class));
+                    }
+
+                    productName.setText(name);
+                    productPrice.setText("$" + price);
+                    productDescription.setText(description);
+                    Glide.with(orders.this).load(imageUrl).into(productImage);
+
+                    itemView.setOnClickListener(v -> openOrderDetails(name, price, description, imageUrl, customizations));
+                    itemsContainer.addView(itemView);
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                //handle errors
-                Log.e("FirebaseError", "Error retrieving data: " + databaseError.getMessage());
-                Toast.makeText(orders.this, "Error retrieving data. Please try again.", Toast.LENGTH_SHORT).show();
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("OrdersActivity", "Database error: " + databaseError.getMessage());
+                Toast.makeText(orders.this, "Failed to load data. Please check your connection and try again.", Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    public static class Item {
-        private String itemName;
-        private double itemPrice;
-
-        public String getItemName() {
-            return itemName;
-        }
-
-        public double getItemPrice() {
-            return itemPrice;
-        }
+    private void navigateToHome() {
+        // Implement navigation to Home activity
     }
 
-    public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
-        private List<Item> itemList;
-
-        public ItemAdapter() {
-            this.itemList = new ArrayList<>();
-        }
-
-        public void setItemList(List<Item> itemList) {
-            this.itemList = itemList;
-        }
-
-        public int getItemViewType(int position) {
-            return position % 2 == 0 ? 0 : 1;
-        }
-
-        @NonNull
-        @Override
-        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order, parent, false);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            Item item = itemList.get(position);
-
-            //bind data to views
-            holder.itemNameTextView.setText(item.getItemName());
-            holder.itemPriceTextView.setText(String.valueOf(item.getItemPrice()));
-            //we need to handle loading images into the ImageView (poss use library like Picasso or Glide for this)
-            //for now, set a placeholder image
-            holder.itemImageView.setImageResource(R.drawable.quesa);
-        }
-
-        @Override
-        public int getItemCount() {
-            return itemList.size();
-        }
-
-        class ViewHolder extends RecyclerView.ViewHolder {
-            ImageView itemImageView;
-            TextView itemNameTextView;
-            TextView itemPriceTextView;
-
-            ViewHolder(View itemView) {
-                super(itemView);
-                itemImageView = itemView.findViewById(R.id.ordersProductImage);
-                itemNameTextView = itemView.findViewById(R.id.ordersProductNameText);
-                itemPriceTextView = itemView.findViewById(R.id.ordersProductPriceText);
-
-                //setup onClick listeners for name and image
-                itemNameTextView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        viewProduct(getBindingAdapterPosition(), itemImageView);
-                    }
-                });
-
-                itemImageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        viewProduct(getBindingAdapterPosition(), itemImageView);
-                    }
-                });
-            }
-        }
-        public LinearLayout createItemLayout(Context context, Item item) {
-            //create new LinearLayout for each item
-            LinearLayout itemLayout = new LinearLayout(context);
-            itemLayout.setOrientation(LinearLayout.HORIZONTAL);
-
-            //create ImageView for item image
-            ImageView itemImageView = new ImageView(context);
-            itemImageView.setLayoutParams(new LinearLayout.LayoutParams(
-                    100,
-                    110
-            ));
-            //set image resource based on item, ex: itemImageView.setImageResource(R.drawable.your_image_resource);
-            itemLayout.addView(itemImageView);
-
-            //create TextView for item name
-            TextView itemNameTextView = new TextView(context);
-            itemNameTextView.setLayoutParams(new LinearLayout.LayoutParams(
-                    200,
-                    110
-            ));
-            itemNameTextView.setText(item.getItemName());
-            itemNameTextView.setTextColor(Color.parseColor("#046305"));
-            itemNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-            itemNameTextView.setTypeface(null, Typeface.BOLD);
-
-            //add to ordersProductNameHolder
-            LinearLayout productNameHolder = itemLayout.findViewById(R.id.ordersProductNameHolder);
-            productNameHolder.addView(itemNameTextView);
-
-            //create TextView for item price
-            TextView itemPriceTextView = new TextView(context);
-            itemPriceTextView.setLayoutParams(new LinearLayout.LayoutParams(
-                    100,
-                    110
-            ));
-            itemPriceTextView.setText(String.valueOf(item.getItemPrice()));
-            itemPriceTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-            itemPriceTextView.setTypeface(null, Typeface.BOLD);
-
-            //add to ordersProductPriceHolder
-            LinearLayout productPriceHolder = itemLayout.findViewById(R.id.ordersProductPriceHolder);
-            productPriceHolder.addView(itemPriceTextView);
-
-            return itemLayout;
-        }
-
-        public void viewProduct(int position, ImageView clickedImageView) {
-            if (position >= 0 && position < itemList.size()) {
-                Item clickedItem = itemList.get(position);
-
-                if (clickedItem != null) {
-                    // Create an Intent to start the new activity
-                    Intent intent = new Intent(clickedImageView.getContext(), orderdetail.class);
-
-                    // Pass the product name to the new activity using a Bundle
-                    intent.putExtra("productName", clickedItem.getItemName());
-
-                    // Start the new activity
-                    clickedImageView.getContext().startActivity(intent);
-                } else {
-                    // Handle the case where clickedItem is null
-                    Toast.makeText(clickedImageView.getContext(), "Error: Item data is null", Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                // Handle the case where position is out of bounds
-                Toast.makeText(clickedImageView.getContext(), "Error: Invalid position", Toast.LENGTH_SHORT).show();
-            }
-        }
+    private void navigateToCart() {
+        // Implement navigation to Cart activity
     }
 
-    public void onLogin(View view) {
-        // should be logout button, we can implement dynamically
+    private void navigateToAccount() {
+        // Implement navigation to Account activity
     }
 
-    public void onHome(View view) {
-        Toast.makeText(this, "You're already in the home orders page!", Toast.LENGTH_SHORT).show();
-    }
-
-    public void onAccount(View view) {
-        Intent toSummary = new Intent(this, accountsummary.class);
-        startActivity(toSummary);
-        finish();
+    private void openOrderDetails(String name, Double price, String description, String imageUrl, HashMap<String, Double> customizations) {
+        Intent intent = new Intent(this, orderdetail.class);
+        intent.putExtra("productName", name);
+        intent.putExtra("productPrice", price);
+        intent.putExtra("productDescription", description);
+        intent.putExtra("productImageUrl", imageUrl);
+        intent.putExtra("productCustomizations", customizations);
+        startActivity(intent);
     }
 }
-
