@@ -52,7 +52,7 @@ public class cart extends AppCompatActivity {
             productsRef.child(product.getProductName()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    double price = dataSnapshot.child("Price").getValue(Double.class);
+                    double price = dataSnapshot.child("Price").getValue(Double.class) + 3;
                     String description = dataSnapshot.child("Description").getValue(String.class);
 
                     View cartItem = LayoutInflater.from(cart.this).inflate(R.layout.cart_item, cartItemsContainer, false);

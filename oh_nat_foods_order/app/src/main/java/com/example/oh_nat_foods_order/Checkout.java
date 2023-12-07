@@ -97,6 +97,7 @@ public class Checkout extends AppCompatActivity {
     }
 
     public void toOrders(View view) {
+        Toast.makeText(Checkout.this,"Order Successfully Placed!",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this,myorders.class);
         startActivity(intent);
         finish();
