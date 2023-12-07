@@ -102,4 +102,10 @@ public class orders extends AppCompatActivity {
         intent.putExtra("productCustomizations", customizations);
         startActivity(intent);
     }
+
+    public void onCartButton(View view) {
+        Intent toCart = new Intent(orders.this,cart.class);
+        startActivity(toCart);
+        finish();
+    }
 }

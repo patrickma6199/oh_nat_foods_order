@@ -2,14 +2,18 @@ package com.example.oh_nat_foods_order;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -101,13 +105,25 @@ public class orderdetail extends AppCompatActivity {
             if(p.getProductName().equals(productName)){
                 exists = true;
                 p.setQuantity(p.getQuantity() + 1);
+                break;
             }
         }
         if(!exists) {
             Product product = new Product(productName,1);
             items.add(product);
-            saveCartData(items);
         }
+        Toast.makeText(orderdetail.this,"Item Added to Cart",Toast.LENGTH_SHORT).show();
+        saveCartData(items);
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //Go to login page after 1.5 seconds
+                Intent toOrders = new Intent(orderdetail.this, orders.class);
+                startActivity(toOrders);
+                finish();
+            }
+        }, 1500);
     }
 
     private void saveCartData(List<Product> cartItems) {
