@@ -3,6 +3,7 @@ package com.example.oh_nat_foods_order;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -63,14 +65,21 @@ public class Checkout extends AppCompatActivity {
                             if (lastClickedSelectButton != null && lastClickedSelectButton != selectButton) {
                                 lastClickedSelectButton.setBackgroundColor(Color.WHITE);
                                 lastClickedSelectButton.setTextColor(Color.parseColor("#046305"));
+
+                                Toast.makeText(Checkout.this, "Success: Payment Method Selected", Toast.LENGTH_SHORT).show();
+
                             }
                             if (selectButton.getCurrentTextColor() == Color.WHITE) {
                                 selectButton.setBackgroundColor(Color.parseColor("#046305"));
                                 selectButton.setTextColor(Color.WHITE);
                                 lastClickedSelectButton = selectButton;
+
+                                Toast.makeText(Checkout.this, "Success: Payment Method Selected", Toast.LENGTH_SHORT).show();
                             } else {
                                 selectButton.setBackgroundColor(Color.WHITE);
                                 selectButton.setTextColor(Color.parseColor("#046305"));
+
+                                Toast.makeText(Checkout.this, "Success: Payment Method Selected", Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -80,6 +89,19 @@ public class Checkout extends AppCompatActivity {
             }
         });
     }
+
+    public void onBackCart(View view) {
+        Intent intent = new Intent(this,orders.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void toOrders(View view) {
+        Intent intent = new Intent(this,myorders.class);
+        startActivity(intent);
+        finish();
+    }
+
 
     // Additional methods and functionality for the Checkout activity
 }
