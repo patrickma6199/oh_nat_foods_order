@@ -79,24 +79,27 @@ public class myorders extends AppCompatActivity {
     }
 
     private void setupOrderStatusButton(TextView orderStatus, String queueNumber, String orderId) {
-        orderStatus.setOnClickListener(v -> {
-            if (lastClickedOrderStatus != null && lastClickedOrderStatus != orderStatus) {
-                resetLastClickedOrderStatus();
-            }
-            if ("Confirm?".equals(orderStatus.getText().toString())) {
-                cancelOrder(orderId);
-            } else {
-                orderStatus.setText("Confirm?");
-                lastClickedOrderStatus = orderStatus;
-            }
-        });
-
         if(!"0".equals(queueNumber)) {
             orderStatus.setText("CANCEL");
             orderStatus.setTag("CANCEL"); // Set the tag
+            orderStatus.setOnClickListener(v -> {
+                if (lastClickedOrderStatus != null && lastClickedOrderStatus != orderStatus) {
+                    resetLastClickedOrderStatus();
+                }
+                if ("Confirm?".equals(orderStatus.getText().toString())) {
+                    cancelOrder(orderId);
+                } else {
+                    orderStatus.setText("Confirm?");
+                    lastClickedOrderStatus = orderStatus;
+                }
+            });
         } else {
             orderStatus.setText("PICK UP");
             orderStatus.setTag("PICK UP"); // Set the tag
+
+            orderStatus.setOnClickListener(v -> {
+                //implement pick up here
+            });
         }
     }
 
