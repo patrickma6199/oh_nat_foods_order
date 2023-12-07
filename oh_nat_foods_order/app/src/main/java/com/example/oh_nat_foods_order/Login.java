@@ -30,11 +30,7 @@ public class Login extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private Button submit;
-    private TextView login;
-    private TextView account;
-    private TextView home;
     private TextView register;
-    private TextView forgotPassword;
 
     private DatabaseReference usernames;
 
@@ -72,7 +68,6 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.login_password);
         submit = findViewById(R.id.login_submit);
         register = findViewById(R.id.login_register);
-        forgotPassword = findViewById(R.id.login_forgotPassword);
 
 
         //Login button
@@ -93,33 +88,9 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Login.this,"You're already in the login page!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toHome = new Intent(Login.this,MainActivity.class);
-                startActivity(toHome);
-                finish();
-            }
-        });
-
-        account.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Login.this,"Please log in first.", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
-    public void onHome (View view) {
+    public void onBackLogin (View view) {
         Intent toHome = new Intent(Login.this,MainActivity.class);
         startActivity(toHome);
         finish();

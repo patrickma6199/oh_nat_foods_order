@@ -181,4 +181,10 @@ public class addPaymentMethod extends AppCompatActivity {
     private String formatPostalCode(String postalCode) {
         return (postalCode.substring(0, 3) + " " + postalCode.substring(3)).toUpperCase();
     }
+
+    public void onBackAddPay(View view) {
+        Intent toPay = new Intent(addPaymentMethod.this,paymentMethods.class);
+        startActivity(toPay);
+        finish();
+    }
 }

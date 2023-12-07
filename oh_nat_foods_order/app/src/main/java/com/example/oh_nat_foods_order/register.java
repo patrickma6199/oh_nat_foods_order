@@ -128,4 +128,10 @@ public class register extends AppCompatActivity {
 
         return true;
     }
+
+    public void onBackRegister (View view) {
+        Intent toHome = new Intent(register.this,MainActivity.class);
+        startActivity(toHome);
+        finish();
+    }
 }
