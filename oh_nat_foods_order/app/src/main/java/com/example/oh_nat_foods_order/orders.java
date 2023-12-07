@@ -45,9 +45,9 @@ public class orders extends AppCompatActivity {
                     ImageView productImage = itemView.findViewById(R.id.item_order_image);
 
                     String name = productSnapshot.getKey();
-                    Double price = productSnapshot.child("price").getValue(Double.class);
-                    String description = productSnapshot.child("description").getValue(String.class);
-                    String imageUrl = productSnapshot.child("imageUrl").getValue(String.class);
+                    Double price = productSnapshot.child("Price").getValue(Double.class);
+                    String description = productSnapshot.child("Description").getValue(String.class);
+                    String imageUrl = productSnapshot.child("URL").getValue(String.class);
 
                     // Additional code to handle customizations
                     DataSnapshot customizationsSnapshot = productSnapshot.child("Custom");

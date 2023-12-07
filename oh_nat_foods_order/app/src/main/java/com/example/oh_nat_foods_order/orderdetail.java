@@ -1,6 +1,8 @@
 package com.example.oh_nat_foods_order;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,8 +12,13 @@ import android.view.View;
 import android.widget.CheckBox;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class orderdetail extends AppCompatActivity {
@@ -21,10 +28,21 @@ public class orderdetail extends AppCompatActivity {
     private LinearLayout customOptionsContainer;
     private double basePrice, totalPrice;
 
+    private SharedPreferences shared;
+    private SharedPreferences.Editor editor;
+
+    private List<Product> items;
+
+    private String productName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orderdetail);
+
+        shared = getApplicationContext().getSharedPreferences("mySession",MODE_PRIVATE);
+        editor = shared.edit();
+        items = loadCartData();
 
         productImage = findViewById(R.id.orderDetailsImage);
         productNameTextView = findViewById(R.id.orderDetailsTitle);
@@ -33,7 +51,7 @@ public class orderdetail extends AppCompatActivity {
         customOptionsContainer = findViewById(R.id.customOptionsContainer);
 
         // Extracting data from intent
-        String productName = getIntent().getStringExtra("productName");
+        productName = getIntent().getStringExtra("productName");
         basePrice = getIntent().getDoubleExtra("productPrice", 0.0);
         String productDescription = getIntent().getStringExtra("productDescription");
         String productImageUrl = getIntent().getStringExtra("productImageUrl");
@@ -78,5 +96,40 @@ public class orderdetail extends AppCompatActivity {
     public void onAddToCart(View view) {
         // Add the product to the cart along with the selected customizations
         // Navigate back to the orders page or cart page as required
+        boolean exists = false;
+        for(Product p: items) {
+            if(p.getProductName().equals(productName)){
+                exists = true;
+                p.setQuantity(p.getQuantity() + 1);
+            }
+        }
+        if(!exists) {
+            Product product = new Product(productName,1);
+            items.add(product);
+            saveCartData(items);
+        }
+    }
+
+    private void saveCartData(List<Product> cartItems) {
+        SharedPreferences sharedPreferences = getSharedPreferences("CartPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        Gson gson = new Gson();
+        String json = gson.toJson(cartItems);  // Convert cartItems list to JSON
+        editor.putString("myCart", json);
+        editor.apply();
+    }
+
+    private List<Product> loadCartData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("mySession", MODE_PRIVATE);
+        String json = sharedPreferences.getString("myCart", null);
+
+        if (json != null) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<List<Product>>() {}.getType();
+            return gson.fromJson(json, type);  // Convert JSON to list of products
+        } else {
+            return new ArrayList<>();  // Return empty list if no data found
+        }
     }
 }

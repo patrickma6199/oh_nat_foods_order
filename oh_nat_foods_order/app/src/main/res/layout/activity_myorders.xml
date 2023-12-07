@@ -26,13 +26,13 @@
 
     <ImageView
         android:id="@+id/logoImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/ohnaturalfoodsicon"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/titleTextView"
@@ -45,53 +45,40 @@
         app:layout_constraintTop_toBottomOf="@id/logoImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="8dp"/>
 
-    <TextView
-        android:id="@+id/myOrdersBottomBar"
-        android:layout_width="415dp"
-        android:layout_height="70dp"
-        android:background="#EFEF5B"
+    <LinearLayout
+        android:id="@+id/myOrder_bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#4CAF50"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:orientation="horizontal"
+        android:gravity="center">
 
-    <TextView
-        android:id="@+id/myOrdersLogButton"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="4dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="ORDERS"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <ImageView
+            android:id="@+id/myOrder_homeButton"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:onClick="onHomeOrder"
+            android:src="@drawable/home" />
 
-    <TextView
-        android:id="@+id/myOrdersHomeButton"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="@string/barHome"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/myOrder_ordersButton"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:onClick="onOrdersOrder"
+            android:src="@drawable/orders" />
 
-    <TextView
-        android:id="@+id/myOrdersAccountButton"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="128dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="@string/barAccount"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/myOrder_accountButton"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:onClick="onAccountOrder"
+            android:src="@drawable/account" />
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/myOrdersScrollView"
@@ -102,7 +89,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="60dp"
         android:contentDescription="Payment Methods ScrollView"
-        app:layout_constraintBottom_toTopOf="@+id/myOrdersBottomBar"
+        app:layout_constraintBottom_toTopOf="@+id/myOrder_bottomBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

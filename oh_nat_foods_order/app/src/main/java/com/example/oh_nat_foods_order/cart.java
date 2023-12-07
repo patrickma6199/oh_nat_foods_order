@@ -36,7 +36,7 @@ public class cart extends AppCompatActivity {
         receiveDataFromOrderDetail();
 
         // Populate the ScrollView with cart items
-        populateScrollView();
+        //populateScrollView();
 
         // Calculate prices
         calculatePrices();
@@ -58,30 +58,30 @@ public class cart extends AppCompatActivity {
     }
 
 
-    private void populateScrollView() {
-        LayoutInflater inflater = LayoutInflater.from(this);
-
-        for (CartItem item : cartItems) {
-            View cartItemView = inflater.inflate(R.layout.cart_item, cartItemsContainer, false);
-
-            ImageView productImage = cartItemView.findViewById(R.id.item_order_image);
-            TextView productName = cartItemView.findViewById(R.id.item_order_name);
-            TextView productPrice = cartItemView.findViewById(R.id.item_order_price);
-            TextView productDescription = cartItemView.findViewById(R.id.item_order_description);
-
-            // Assuming you have a method in CartItem to get a combined description including customizations
-            String description = item.getDescriptionWithCustomizations();
-
-            productName.setText(item.getProductName());
-            productPrice.setText(String.format("$%.2f", item.getPrice()));
-            productDescription.setText(description);
-
-            // Set product image if you have it. For now, using a placeholder
-            productImage.setImageResource(R.drawable.placeholder); // Replace 'placeholder' with your drawable
-
-            cartItemsContainer.addView(cartItemView);
-        }
-    }
+//    private void populateScrollView() {
+//        LayoutInflater inflater = LayoutInflater.from(this);
+//
+//        for (CartItem item : cartItems) {
+//            View cartItemView = inflater.inflate(R.layout.cart_item, cartItemsContainer, false);
+//
+//            ImageView productImage = cartItemView.findViewById(R.id.item_order_image);
+//            TextView productName = cartItemView.findViewById(R.id.item_order_name);
+//            TextView productPrice = cartItemView.findViewById(R.id.item_order_price);
+//            TextView productDescription = cartItemView.findViewById(R.id.item_order_description);
+//
+//            // Assuming you have a method in CartItem to get a combined description including customizations
+//            String description = item.getDescriptionWithCustomizations();
+//
+//            productName.setText(item.getProductName());
+//            productPrice.setText(String.format("$%.2f", item.getPrice()));
+//            productDescription.setText(description);
+//
+//            // Set product image if you have it. For now, using a placeholder
+//            productImage.setImageResource(R.drawable.placeholder); // Replace 'placeholder' with your drawable
+//
+//            cartItemsContainer.addView(cartItemView);
+//        }
+//    }
 
 
     private void calculatePrices() {
