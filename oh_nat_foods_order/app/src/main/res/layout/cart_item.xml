@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -14,11 +15,11 @@
         android:src="@drawable/soup"
         android:layout_marginEnd="8dp"/>
 
-    <!-- Textual Information -->
+    <!-- Textual Information Container -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <!-- Product Name -->
@@ -49,4 +50,41 @@
             android:text="Short description..."
             android:textSize="14sp"/>
     </LinearLayout>
+
+    <!-- Pill-shaped Selector -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+    android:layout_weight="1"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:background="@drawable/selector">
+
+    <!-- Minus/Trash Icon -->
+    <ImageView
+        android:id="@+id/minus_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/trashcan"
+        android:layout_gravity="start"/>
+
+    <!-- Item Count -->
+    <TextView
+        android:id="@+id/item_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textSize="18sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_gravity="center"/>
+
+    <!-- Plus Icon -->
+    <ImageView
+        android:id="@+id/plus_icon"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:src="@drawable/plus"
+        android:layout_gravity="end"/>
 </LinearLayout>
+    </LinearLayout>
