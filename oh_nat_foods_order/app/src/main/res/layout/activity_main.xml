@@ -7,27 +7,27 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/main_logoImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/logoImageView"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/ohnaturalfoodsicon"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/main_titleTextView"
+        android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Oh Natural Foods Preordering"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#046305"
-        app:layout_constraintTop_toBottomOf="@id/main_logoImageView"
+        app:layout_constraintTop_toBottomOf="@id/logoImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="8dp"/>
 
     <ImageView
         android:id="@+id/main_mainImage"
@@ -37,7 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_titleTextView"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView"
         app:srcCompat="@drawable/ohnatfoodshome" />
 
     <Button
@@ -82,7 +82,7 @@
             android:id="@+id/main_homeButton"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:onClick="onHome"
+            android:onClick="onHomeMain"
             android:src="@drawable/home" />
 
         <ImageView
