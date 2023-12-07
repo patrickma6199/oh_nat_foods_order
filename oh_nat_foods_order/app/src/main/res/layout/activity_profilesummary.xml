@@ -8,14 +8,26 @@
     tools:context=".profileSummary">
 
     <ImageView
-        android:id="@+id/logoImageView"
+        android:id="@+id/loginBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ohnaturalfoodsicon"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#4CAF50"
+        android:onClick="onBackProfile"
+        android:src="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ohnaturalfoodsicon"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/titleTextView"
@@ -28,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@id/logoImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="8dp"/>
 
     <TextView
         android:id="@+id/profileSum_usernameText"
@@ -81,79 +93,33 @@
 
     <!-- bottom bar -->
 
+
     <TextView
         android:id="@+id/profileSum_functionalityMessage"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="368dp"
+        android:layout_marginBottom="328dp"
         android:text="(Loyalty Points and Personal Reviews to be implemented below)"
         android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/main_bottomBar"
+        app:layout_constraintBottom_toTopOf="@+id/profileSum_submit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/main_bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#EFEF5B"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <TextView
-        android:id="@+id/main_homeButton"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="HOME"
-        android:textSize="25dp"
-        android:onClick="onHome"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <TextView
-        android:id="@+id/main_accountButton"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="128dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="ACCOUNT"
-        android:textAlignment="center"
-        android:textSize="25dp"
-        android:onClick="onLogin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/main_logButton"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="264dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="LOGIN"
-        android:onClick="onLogin"
-        android:textAlignment="center"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/profileSum_submit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="272dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="44dp"
         android:backgroundTint="#4CAF50"
         android:text="Save Changes"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileSum_functionalityMessage" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

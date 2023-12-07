@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(toRegister);
     }
 
-    public void onHome(View view) {
+    public void onHomeMain(View view) {
         Toast.makeText(this, "You are already in the Home Page!", Toast.LENGTH_SHORT).show();
     }
 }

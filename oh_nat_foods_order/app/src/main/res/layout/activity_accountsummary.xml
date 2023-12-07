@@ -9,27 +9,27 @@
 
 
     <ImageView
-        android:id="@+id/accountSummaryLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/logoImageView"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/ohnaturalfoodsicon"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/accountSummaryTitle"
+        android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Oh Natural Foods Preordering"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#046305"
-        app:layout_constraintTop_toBottomOf="@id/accountSummaryLogo"
+        app:layout_constraintTop_toBottomOf="@id/logoImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="8dp"/>
     <Button
         android:id="@+id/profileButton"
         android:layout_width="0dp"
@@ -37,7 +37,7 @@
         android:text="Profile"
         android:backgroundTint="#4CAF50"
         android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/accountSummaryTitle"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
@@ -74,14 +74,48 @@
         android:id="@+id/signOutButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Sign Out"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="124dp"
         android:backgroundTint="#4CAF50"
+        android:text="Sign Out"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/main_bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#4CAF50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/main_homeButton"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:onClick="onHomeAccount"
+            android:src="@drawable/home" />
+
+        <ImageView
+            android:id="@+id/main_cartButton"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:onClick="onOrdersAccount"
+            android:src="@drawable/orders" />
+
+        <ImageView
+            android:id="@+id/main_accountButton"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:onClick="onAccountAccount"
+            android:src="@drawable/account" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

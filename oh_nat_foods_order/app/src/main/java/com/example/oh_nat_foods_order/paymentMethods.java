@@ -94,4 +94,25 @@ public class paymentMethods extends AppCompatActivity {
             Toast.makeText(paymentMethods.this, "Failed to Delete Payment Method", Toast.LENGTH_SHORT).show();
         });
     }
+
+    public void onHomePay(View view) {
+        // Implement navigation to Home activity
+        Intent toHome = new Intent(paymentMethods.this,orders.class);
+        startActivity(toHome);
+        finish();
+    }
+
+    public void onOrdersPay(View view) {
+        // Implement navigation to Cart activity
+        Intent toMyOrders = new Intent(paymentMethods.this,myorders.class);
+        startActivity(toMyOrders);
+        finish();
+    }
+
+    public void onAccountPay(View view) {
+        // Implement navigation to Account activity
+        Intent toMyAccounts = new Intent(paymentMethods.this,accountsummary.class);
+        startActivity(toMyAccounts);
+        finish();
+    }
 }

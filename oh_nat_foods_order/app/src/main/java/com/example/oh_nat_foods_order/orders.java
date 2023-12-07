@@ -33,14 +33,6 @@ public class orders extends AppCompatActivity {
         productsRef = FirebaseDatabase.getInstance().getReference().child("Products");
         itemsContainer = findViewById(R.id.order_items_container);
 
-        ImageView homeButton = findViewById(R.id.main_homeButton);
-        ImageView cartButton = findViewById(R.id.main_cartButton);
-        ImageView accountButton = findViewById(R.id.main_accountButton);
-
-        homeButton.setOnClickListener(view -> navigateToHome());
-        cartButton.setOnClickListener(view -> navigateToCart());
-        accountButton.setOnClickListener(view -> navigateToAccount());
-
         productsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -82,16 +74,23 @@ public class orders extends AppCompatActivity {
         });
     }
 
-    private void navigateToHome() {
+    public void onHomeOrder(View view) {
         // Implement navigation to Home activity
+        Toast.makeText(this, "You are already in the Home Page!", Toast.LENGTH_SHORT).show();
     }
 
-    private void navigateToCart() {
+    public void onOrdersOrder(View view) {
         // Implement navigation to Cart activity
+        Intent toMyOrders = new Intent(orders.this,myorders.class);
+        startActivity(toMyOrders);
+        finish();
     }
 
-    private void navigateToAccount() {
+    public void onAccountOrder(View view) {
         // Implement navigation to Account activity
+        Intent toMyAccounts = new Intent(orders.this,accountsummary.class);
+        startActivity(toMyAccounts);
+        finish();
     }
 
     private void openOrderDetails(String name, Double price, String description, String imageUrl, HashMap<String, Double> customizations) {

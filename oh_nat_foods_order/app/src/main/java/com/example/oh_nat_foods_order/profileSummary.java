@@ -1,5 +1,6 @@
 package com.example.oh_nat_foods_order;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -86,5 +87,10 @@ public class profileSummary extends AppCompatActivity {
 
     private void fetchUserInfo(String uid) {
         usernames.child(uid).get().addOnCompleteListener(onFetched);
+    }
+
+    public void onBackProfile(View view) {
+        Intent toAccount = new Intent(profileSummary.this, accountsummary.class);
+        startActivity(toAccount);
     }
 }
