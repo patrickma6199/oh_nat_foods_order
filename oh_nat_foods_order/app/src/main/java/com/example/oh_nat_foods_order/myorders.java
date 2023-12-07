@@ -26,6 +26,7 @@ public class myorders extends AppCompatActivity {
     private String uid;
 
     private LinearLayout myOrdersContainer;
+    private TextView lastClickedOrderStatus = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +62,14 @@ public class myorders extends AppCompatActivity {
 
         TextView orderOrderId = myOrderView.findViewById(R.id.myOrdersNumText);
         TextView orderDetails = myOrderView.findViewById(R.id.myOrdersDetailsText);
-        TextView orderQueueNumber = myOrderView.findViewById(R.id.myOrdersQueueText);
+        TextView orderQueueNumber = myOrderView.findViewById(R.id.myOrdersQueueNumText);
         TextView orderStatus = myOrderView.findViewById(R.id.myOrdersStatusText);
 
         String orderId = item.getKey();
         String queueNumber = item.child("Queue").getValue().toString();
         String details = item.child("Items").getValue().toString();
 
-        orderOrderId.setText(orderId);
+        orderOrderId.setText("Order #: " + orderId);
         orderQueueNumber.setText(queueNumber);
         orderDetails.setText(details);
 
@@ -78,14 +79,32 @@ public class myorders extends AppCompatActivity {
     }
 
     private void setupOrderStatusButton(TextView orderStatus, String queueNumber, String orderId) {
+        orderStatus.setOnClickListener(v -> {
+            if (lastClickedOrderStatus != null && lastClickedOrderStatus != orderStatus) {
+                resetLastClickedOrderStatus();
+            }
+            if ("Confirm?".equals(orderStatus.getText().toString())) {
+                cancelOrder(orderId);
+            } else {
+                orderStatus.setText("Confirm?");
+                lastClickedOrderStatus = orderStatus;
+            }
+        });
+
         if(!"0".equals(queueNumber)) {
             orderStatus.setText("CANCEL");
-            orderStatus.setOnClickListener(v -> cancelOrder(orderId));
+            orderStatus.setTag("CANCEL"); // Set the tag
         } else {
             orderStatus.setText("PICK UP");
-            orderStatus.setOnClickListener(v -> {
-                // Implement pick-up logic
-            });
+            orderStatus.setTag("PICK UP"); // Set the tag
+        }
+    }
+
+    private void resetLastClickedOrderStatus() {
+        if (lastClickedOrderStatus != null && lastClickedOrderStatus.getTag() != null) {
+            // Ensure the tag is not null before calling toString()
+            lastClickedOrderStatus.setText(lastClickedOrderStatus.getTag().toString());
+            lastClickedOrderStatus = null;
         }
     }
 
@@ -93,6 +112,7 @@ public class myorders extends AppCompatActivity {
         orders.child(orderId).removeValue().addOnSuccessListener(aVoid -> {
             Toast.makeText(myorders.this, "Order Cancelled", Toast.LENGTH_SHORT).show();
             decrementQueueNumbers(orderId);
+            resetLastClickedOrderStatus();
         }).addOnFailureListener(e -> {
             Toast.makeText(myorders.this, "Failed to Cancel Order", Toast.LENGTH_SHORT).show();
         });
