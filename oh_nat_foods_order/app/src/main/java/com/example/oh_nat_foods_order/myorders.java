@@ -3,6 +3,7 @@ package com.example.oh_nat_foods_order;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -148,5 +149,24 @@ public class myorders extends AppCompatActivity {
                 orderSnapshot.getRef().child("Queue").setValue(Integer.toString(newQueueNum));
             }
         }
+    }
+
+    public void onOrdersOrder(View view) {
+        // Implement navigation to Home activity
+        Toast.makeText(this, "You are already viewing your orders!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void onHomeOrder(View view) {
+        // Implement navigation to Cart activity
+        Intent toMyOrders = new Intent(myorders.this,orders.class);
+        startActivity(toMyOrders);
+        finish();
+    }
+
+    public void onAccountOrder(View view) {
+        // Implement navigation to Account activity
+        Intent toMyAccounts = new Intent(myorders.this,accountsummary.class);
+        startActivity(toMyAccounts);
+        finish();
     }
 }
