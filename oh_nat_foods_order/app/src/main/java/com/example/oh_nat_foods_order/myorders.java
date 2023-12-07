@@ -40,10 +40,6 @@ public class myorders extends AppCompatActivity {
         root = FirebaseDatabase.getInstance().getReference();
         orders = root.child("Orders").child(uid);
 
-        fetchOrders();
-    }
-
-    private void fetchOrders() {
         orders.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -69,8 +65,8 @@ public class myorders extends AppCompatActivity {
         TextView orderStatus = myOrderView.findViewById(R.id.myOrdersStatusText);
 
         String orderId = item.getKey();
-        String queueNumber = item.child("Queue").getValue(String.class);
-        String details = item.child("Items").getValue(String.class);
+        String queueNumber = item.child("Queue").getValue().toString();
+        String details = item.child("Items").getValue().toString();
 
         orderOrderId.setText(orderId);
         orderQueueNumber.setText(queueNumber);
