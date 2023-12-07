@@ -6,13 +6,20 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp">
 
+    <!-- Product Image -->
+    <ImageView
+        android:id="@+id/item_order_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/soup"
+        android:layout_marginEnd="8dp"/>
+
     <!-- Textual Information -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:paddingEnd="8dp">
+        android:orientation="vertical">
 
         <!-- Product Name -->
         <TextView
@@ -40,14 +47,6 @@
             android:ellipsize="end"
             android:maxLines="3"
             android:text="Short description..."
-            android:textSize="14sp" />
+            android:textSize="14sp"/>
     </LinearLayout>
-
-    <!-- Product Image -->
-    <ImageView
-        android:id="@+id/item_order_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/soup"
-        android:layout_marginStart="8dp"/>
 </LinearLayout>
