@@ -56,21 +56,19 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //initialize editor for session variables
+        //for session variables
         shared = getApplicationContext().getSharedPreferences("mySession", MODE_PRIVATE);
         editor = shared.edit();
 
         //initialize database reference
         usernames = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        // Initialize UI elements
         username = findViewById(R.id.login_username);
         password = findViewById(R.id.login_password);
         submit = findViewById(R.id.login_submit);
         register = findViewById(R.id.login_register);
 
 
-        //Login button
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +77,6 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        //Register button
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -54,21 +54,22 @@ public class orderdetail extends AppCompatActivity {
         productPriceTextView = findViewById(R.id.addToCartButton);
         customOptionsContainer = findViewById(R.id.customOptionsContainer);
 
-        // Extracting data from intent
         productName = getIntent().getStringExtra("productName");
         basePrice = getIntent().getDoubleExtra("productPrice", 0.0);
         String productDescription = getIntent().getStringExtra("productDescription");
         String productImageUrl = getIntent().getStringExtra("productImageUrl");
+        // We wanted to be able get the selected customizations from the orders page and
+        // use it to calculate the total price when sent via a bundle to the cart page.
+        // However, we did not have time to implement this feature in cart.
         HashMap<String, Double> customizations = (HashMap<String, Double>) getIntent().getSerializableExtra("productCustomizations");
 
-        // Set values
+
         Glide.with(this).load(productImageUrl).into(productImage);
         productNameTextView.setText(productName);
         productDescriptionTextView.setText(productDescription);
         productPriceTextView.setText("Add to Cart $" + basePrice);
         totalPrice = basePrice;
 
-        // Inflate customization options
         if (customizations != null && !customizations.isEmpty()) {
             for (Map.Entry<String, Double> entry : customizations.entrySet()) {
                 View customView = LayoutInflater.from(this).inflate(R.layout.custom_option_item, customOptionsContainer, false);
@@ -96,10 +97,8 @@ public class orderdetail extends AppCompatActivity {
         productPriceTextView.setText("Add to Cart $" + String.format("%.2f", totalPrice));
     }
 
-    // Implement the "Add to Cart" button functionality
     public void onAddToCart(View view) {
-        // Add the product to the cart along with the selected customizations
-        // Navigate back to the orders page or cart page as required
+
         boolean exists = false;
         for(Product p: items) {
             if(p.getProductName().equals(productName)){
@@ -118,7 +117,6 @@ public class orderdetail extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                //Go to login page after 1.5 seconds
                 Intent toOrders = new Intent(orderdetail.this, orders.class);
                 startActivity(toOrders);
                 finish();
@@ -131,21 +129,21 @@ public class orderdetail extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         Gson gson = new Gson();
-        String json = gson.toJson(cartItems);  // Convert cartItems list to JSON
+        String json = gson.toJson(cartItems);
         editor.putString("myCart", json);
         editor.apply();
     }
 
     private List<Product> loadCartData() {
-        SharedPreferences sharedPreferences = getSharedPreferences("mySession", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("CartPrefs", MODE_PRIVATE);
         String json = sharedPreferences.getString("myCart", null);
 
         if (json != null) {
             Gson gson = new Gson();
             Type type = new TypeToken<List<Product>>() {}.getType();
-            return gson.fromJson(json, type);  // Convert JSON to list of products
+            return gson.fromJson(json, type);
         } else {
-            return new ArrayList<>();  // Return empty list if no data found
+            return new ArrayList<>();
         }
     }
 }

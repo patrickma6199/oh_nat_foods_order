@@ -62,14 +62,12 @@ public class profileSummary extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profilesummary);
 
-        //initializing shared and uid from session variable
+        //from session variable
         shared = getApplicationContext().getSharedPreferences("mySession",MODE_PRIVATE);
         uid = shared.getString("uid","");
 
-        //initializing database reference
         usernames = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        //initializing views
         username = (TextView) findViewById(R.id.profileSum_username);
         name = (EditText) findViewById(R.id.profileSum_name);
         submit = (Button) findViewById(R.id.profileSum_submit);
@@ -81,7 +79,6 @@ public class profileSummary extends AppCompatActivity {
             }
         });
 
-        //fetching user's information from database
         fetchUserInfo(uid);
     }
 

@@ -49,7 +49,6 @@ public class orders extends AppCompatActivity {
                     String description = productSnapshot.child("Description").getValue(String.class);
                     String imageUrl = productSnapshot.child("URL").getValue(String.class);
 
-                    // Additional code to handle customizations
                     DataSnapshot customizationsSnapshot = productSnapshot.child("Custom");
                     HashMap<String, Double> customizations = new HashMap<>();
                     for (DataSnapshot customOption : customizationsSnapshot.getChildren()) {
@@ -75,19 +74,16 @@ public class orders extends AppCompatActivity {
     }
 
     public void onHomeOrder(View view) {
-        // Implement navigation to Home activity
         Toast.makeText(this, "You are already in the Home Page!", Toast.LENGTH_SHORT).show();
     }
 
     public void onOrdersOrder(View view) {
-        // Implement navigation to Cart activity
         Intent toMyOrders = new Intent(orders.this,myorders.class);
         startActivity(toMyOrders);
         finish();
     }
 
     public void onAccountOrder(View view) {
-        // Implement navigation to Account activity
         Intent toMyAccounts = new Intent(orders.this,accountsummary.class);
         startActivity(toMyAccounts);
         finish();

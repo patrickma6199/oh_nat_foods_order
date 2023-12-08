@@ -96,21 +96,18 @@ public class paymentMethods extends AppCompatActivity {
     }
 
     public void onHomePay(View view) {
-        // Implement navigation to Home activity
         Intent toHome = new Intent(paymentMethods.this,orders.class);
         startActivity(toHome);
         finish();
     }
 
     public void onOrdersPay(View view) {
-        // Implement navigation to Cart activity
         Intent toMyOrders = new Intent(paymentMethods.this,myorders.class);
         startActivity(toMyOrders);
         finish();
     }
 
     public void onAccountPay(View view) {
-        // Implement navigation to Account activity
         Intent toMyAccounts = new Intent(paymentMethods.this,accountsummary.class);
         startActivity(toMyAccounts);
         finish();

@@ -67,8 +67,8 @@ public class myorders extends AppCompatActivity {
         TextView orderStatus = myOrderView.findViewById(R.id.myOrdersStatusText);
 
         String orderId = item.getKey();
-        String queueNumber = item.child("Queue").getValue().toString();
-        String details = item.child("Items").getValue().toString();
+        String queueNumber = item.child("Queue").getValue() != null ? item.child("Queue").getValue().toString() : "N/A";
+        String details = item.child("Items").getValue() != null ? item.child("Items").getValue().toString() : "N/A";
 
         orderOrderId.setText("Order #: " + orderId);
         orderQueueNumber.setText(queueNumber);
@@ -82,7 +82,7 @@ public class myorders extends AppCompatActivity {
     private void setupOrderStatusButton(TextView orderStatus, String queueNumber, String orderId) {
         if(!"0".equals(queueNumber)) {
             orderStatus.setText("CANCEL");
-            orderStatus.setTag("CANCEL"); // Set the tag
+            orderStatus.setTag("CANCEL");
             orderStatus.setOnClickListener(v -> {
                 if (lastClickedOrderStatus != null && lastClickedOrderStatus != orderStatus) {
                     resetLastClickedOrderStatus();
@@ -96,17 +96,17 @@ public class myorders extends AppCompatActivity {
             });
         } else {
             orderStatus.setText("PICK UP");
-            orderStatus.setTag("PICK UP"); // Set the tag
+            orderStatus.setTag("PICK UP");
 
             orderStatus.setOnClickListener(v -> {
-                //implement pick up here
+                pickUpOrder(orderId);
+
             });
         }
     }
 
     private void resetLastClickedOrderStatus() {
         if (lastClickedOrderStatus != null && lastClickedOrderStatus.getTag() != null) {
-            // Ensure the tag is not null before calling toString()
             lastClickedOrderStatus.setText(lastClickedOrderStatus.getTag().toString());
             lastClickedOrderStatus = null;
         }
@@ -122,16 +122,27 @@ public class myorders extends AppCompatActivity {
         });
     }
 
+    public void pickUpOrder(String orderId) {
+        orders.child(orderId).removeValue().addOnSuccessListener(aVoid -> {
+            Toast.makeText(myorders.this, "We hope you enjoy your meal!", Toast.LENGTH_SHORT).show();
+            decrementQueueNumbers(orderId);
+        }).addOnFailureListener(e -> {
+            Toast.makeText(myorders.this, "Failed to Update Order", Toast.LENGTH_SHORT).show();
+        });
+    }
+
     private void decrementQueueNumbers(String orderId) {
         DatabaseReference allOrdersRef = root.child("Orders");
 
         allOrdersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Iterate through each user
+                //iterate through each user
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     adjustQueueForUser(userSnapshot);
                 }
+                int currentQueueNum = dataSnapshot.child("nextQueue").getValue(Integer.class);
+                allOrdersRef.child("nextQueue").setValue(currentQueueNum - 1);
             }
 
             @Override
@@ -143,7 +154,7 @@ public class myorders extends AppCompatActivity {
 
     private void adjustQueueForUser(DataSnapshot userSnapshot) {
         for (DataSnapshot orderSnapshot : userSnapshot.getChildren()) {
-            String queueNumber = orderSnapshot.child("Queue").getValue(String.class);
+            String queueNumber = orderSnapshot.child("Queue").getValue().toString();
             if (queueNumber != null && !queueNumber.equals("0")) {
                 int newQueueNum = Integer.parseInt(queueNumber) - 1;
                 orderSnapshot.getRef().child("Queue").setValue(Integer.toString(newQueueNum));
@@ -152,19 +163,16 @@ public class myorders extends AppCompatActivity {
     }
 
     public void onOrdersOrder(View view) {
-        // Implement navigation to Home activity
         Toast.makeText(this, "You are already viewing your orders!", Toast.LENGTH_SHORT).show();
     }
 
     public void onHomeOrder(View view) {
-        // Implement navigation to Cart activity
         Intent toMyOrders = new Intent(myorders.this,orders.class);
         startActivity(toMyOrders);
         finish();
     }
 
     public void onAccountOrder(View view) {
-        // Implement navigation to Account activity
         Intent toMyAccounts = new Intent(myorders.this,accountsummary.class);
         startActivity(toMyAccounts);
         finish();

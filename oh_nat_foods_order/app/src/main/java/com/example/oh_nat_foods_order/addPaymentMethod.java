@@ -1,4 +1,4 @@
-package com.example.oh_nat_foods_order; // Replace with your actual package name
+package com.example.oh_nat_foods_order;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -49,7 +49,6 @@ public class addPaymentMethod extends AppCompatActivity {
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        //Go to paymentMethods page after 1.5 seconds
                         Intent toPaymentMethods = new Intent(addPaymentMethod.this,paymentMethods.class);
                         startActivity(toPaymentMethods);
                         finish();
@@ -120,7 +119,6 @@ public class addPaymentMethod extends AppCompatActivity {
         formattedExpiryDate = formatExpiryDate(expiryDate);
         formattedPostalCode = formatPostalCode(postalCode);
 
-        // TODO: Implement call to Firebase or other backend service with formatted data
         user.get().addOnCompleteListener(onFetched);
     }
 

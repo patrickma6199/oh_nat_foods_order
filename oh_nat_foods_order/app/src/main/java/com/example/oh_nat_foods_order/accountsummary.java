@@ -69,19 +69,16 @@ public class accountsummary extends AppCompatActivity {
     }
 
     public void onAccountAccount(View view) {
-        // Implement navigation to Home activity
         Toast.makeText(this, "You are already in the Accounts Page!", Toast.LENGTH_SHORT).show();
     }
 
     public void onOrdersAccount(View view) {
-        // Implement navigation to Cart activity
         Intent toMyOrders = new Intent(accountsummary.this,myorders.class);
         startActivity(toMyOrders);
         finish();
     }
 
     public void onHomeAccount(View view) {
-        // Implement navigation to Account activity
         Intent toOrders = new Intent(accountsummary.this,orders.class);
         startActivity(toOrders);
         finish();

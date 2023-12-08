@@ -42,7 +42,6 @@ public class register extends AppCompatActivity {
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        //Go to login page after 1.5 seconds
                         Intent toLogin = new Intent(register.this, Login.class);
                         startActivity(toLogin);
                         finish();
@@ -56,11 +55,9 @@ public class register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        //get reference of firebase root
+        
         usernames = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        // Initialize UI elements
         name = findViewById(R.id.register_name);
         username = findViewById(R.id.register_username);
         password = findViewById(R.id.register_password);
@@ -68,7 +65,6 @@ public class register extends AppCompatActivity {
         submit = findViewById(R.id.register_submit);
         login = findViewById(R.id.register_login);
 
-        //Register button
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +84,8 @@ public class register extends AppCompatActivity {
                 }
             }
         });
-        //Already have an account button
+
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +101,7 @@ public class register extends AppCompatActivity {
         usernames.child(username).get().addOnCompleteListener(onUsernameFetched);
     }
 
-    //Password format checker
+    //password format checker
     private boolean isValidPassword(String password) {
         if (password.length() < 8) {
             Toast.makeText(register.this, "Password must be at least 8 characters long.", Toast.LENGTH_SHORT).show();

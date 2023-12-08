@@ -3,6 +3,7 @@ package com.example.oh_nat_foods_order;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -49,44 +50,45 @@ public class cart extends AppCompatActivity {
         subtotal = 0;
 
         for (Product product : items) {
+            View cartItem = LayoutInflater.from(cart.this).inflate(R.layout.cart_item, cartItemsContainer, false);
+
+            TextView productName = cartItem.findViewById(R.id.item_order_name);
+            TextView productPrice = cartItem.findViewById(R.id.item_order_price);
+            TextView productDescription = cartItem.findViewById(R.id.item_order_description);
+            TextView itemCount = cartItem.findViewById(R.id.item_count);
+            ImageView minusIcon = cartItem.findViewById(R.id.minus_icon);
+            ImageView plusIcon = cartItem.findViewById(R.id.plus_icon);
+
+            productName.setText(product.getProductName());
+            itemCount.setText(String.valueOf(product.getQuantity()));
+
             productsRef.child(product.getProductName()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    double price = dataSnapshot.child("Price").getValue(Double.class) + 3;
+                    double price = dataSnapshot.child("Price").getValue(Double.class);
                     String description = dataSnapshot.child("Description").getValue(String.class);
 
-                    View cartItem = LayoutInflater.from(cart.this).inflate(R.layout.cart_item, cartItemsContainer, false);
-
-                    TextView productName = cartItem.findViewById(R.id.item_order_name);
-                    TextView productPrice = cartItem.findViewById(R.id.item_order_price);
-                    TextView productDescription = cartItem.findViewById(R.id.item_order_description);
-                    TextView itemCount = cartItem.findViewById(R.id.item_count);
-                    ImageView minusIcon = cartItem.findViewById(R.id.minus_icon);
-                    ImageView plusIcon = cartItem.findViewById(R.id.plus_icon);
-
-                    productName.setText(product.getProductName());
                     productPrice.setText("$" + price);
                     productDescription.setText(description);
-                    itemCount.setText(String.valueOf(product.getQuantity()));
-
-                    minusIcon.setOnClickListener(v -> updateQuantity(product, false, price));
-                    plusIcon.setOnClickListener(v -> updateQuantity(product, true, price));
 
                     subtotal += price * product.getQuantity();
                     updateTotals();
-
-                    cartItemsContainer.addView(cartItem);
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    // Handle possible errors.
+                    Log.w("firebase","Error Loading product reference in cart");
                 }
             });
+
+            minusIcon.setOnClickListener(v -> updateQuantity(product, false));
+            plusIcon.setOnClickListener(v -> updateQuantity(product, true));
+
+            cartItemsContainer.addView(cartItem);
         }
     }
 
-    private void updateQuantity(Product product, boolean increase, double price) {
+    private void updateQuantity(Product product, boolean increase) {
         int quantity = product.getQuantity();
         if (increase) {
             quantity++;
@@ -94,9 +96,8 @@ public class cart extends AppCompatActivity {
             quantity--;
         } else {
             items.remove(product);
-            cartItemsContainer.removeViewAt(items.indexOf(product));
+            populateCart();
             saveCartData();
-            updateTotals();
             return;
         }
 
@@ -137,9 +138,10 @@ public class cart extends AppCompatActivity {
 
     public void onCheckout(View view) {
         Intent intent = new Intent(this, Checkout.class);
-        Gson gson = new Gson();
-        String cartJson = gson.toJson(items);
-        intent.putExtra("cartItems", cartJson);
+        intent.putExtra("subtotal",subtotal);
+        intent.putExtra("gst",gst);
+        intent.putExtra("total",total);
+        saveCartData();
         startActivity(intent);
     }
 
